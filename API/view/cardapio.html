@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cardápio - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Cardápio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="institucional.html">Nossa História</a>
+            <a href="admin.html">Área do Chef</a>
+        </nav>
+    </header>
+    <main>
+        <div id="pratos-container"></div>
+    </main>
+
+    <div id="modal-personalizacao" class="modal">
+        <div class="modal-content">
+            <span class="fechar">&times;</span>
+            <h3 id="modal-titulo"></h3>
+            <form id="form-personalizacao">
+            </form>
+            <button id="btn-confirmar-personalizacao">Confirmar e ir para pedido</button>
+        </div>
+    </div>
+
+    <script src="js/cardapio.js"></script>
+</body>
+</html>
