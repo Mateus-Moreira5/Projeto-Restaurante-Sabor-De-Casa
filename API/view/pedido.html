@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Pedido - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Finalizar Pedido</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="institucional.html">Nossa História</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Seu Pedido</h2>
+        <div id="resumo-prato"></div>
+
+        <form id="form-pedido">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required>
+
+            <label>Método de Pagamento:</label>
+            <select id="pagamento" required>
+                <option value="">Selecione</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Cartão">Cartão</option>
+                <option value="Pix">Pix</option>
+            </select>
+
+            <label>Tipo de Entrega:</label>
+            <div>
+                <input type="radio" id="retirada" name="tipoEntrega" value="Retirada" checked>
+                <label for="retirada">Retirada no local</label>
+                <input type="radio" id="delivery" name="tipoEntrega" value="Delivery">
+                <label for="delivery">Delivery</label>
+            </div>
+
+            <div id="campos-endereco" style="display: none;">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" maxlength="9" placeholder="00000-000">
+                <button type="button" id="buscar-cep">Buscar</button>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" readonly>
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" readonly>
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" readonly>
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" readonly maxlength="2">
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" required>
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento">
+            </div>
+
+            <button type="submit">Enviar Pedido</button>
+        </form>
+    </main>
+
+    <script src="js/formulario.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Área do Chef</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="institucional.html">Nossa História</a>
+            <button id="btn-sair" style="display:none;">Sair</button>
+        </nav>
+    </header>
+    <main>
+        <div id="tela-login">
+            <h2>Login</h2>
+            <form id="form-login">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+
+        <div id="tela-admin" style="display:none;">
+            <h2>Gerenciar Disponibilidade dos Pratos</h2>
+            <div id="lista-pratos-admin"></div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
