@@ -413,3 +413,20 @@ details p {
   color: #555;
   font-size: 0.95rem;
 }
+.botao{
+    background-color: #a93226;
+    color:white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.botao-personalizar{
+     background-color: #a93226;
+    color:white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+
+}

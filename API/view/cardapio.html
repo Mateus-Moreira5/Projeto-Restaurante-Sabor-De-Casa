@@ -13,6 +13,7 @@
             <a href="cardapio.html">Cardápio</a>
             <a href="institucional.html">Nossa História</a>
             <a href="admin.html">Área do Chef</a>
+            <a href="carrinho.html">Carrinho</a>
         </nav>
     </header>
     <main>
@@ -24,16 +25,33 @@
       <p>Acompanha: Arroz, farofa, couve e laranja</p>
       <p>Preço: R$ 45,00</p>
       <p>Serve até 3 pessoas</p>
-      <p>Historia dos pratos:</p>
-      <a href="historiaPratos.html">Historia Dos Pratos</a>
+
+      <button class="botao-personalizar" data-id="1"
+       onclick="personalizarPrato(this.dataset.id)">
+        Personalizar prato
+      </button>
+    
+       <button class="botao" onclick="adicionarItem({ produto: 'feijoada'})">
+      Adicionar ao Carrinho
+    </button>
       
     </details>
   </li>
   <li>
     <details>
-      <summary>Lasanha à Bolonhesa</summary>
-      <p>Ingredientes: massa, carne moída, molho bechamel</p>
+      <summary>Escondidinho de carne seca</summary>
+      <p>Ingredientes: </p>
       <p>Preço: R$ 38,00</p>
+      <p>Serve ate 1 pessoa</p>
+      <button class="botao-personalizar" data-id="2"
+       onclick="personalizarPrato(this.dataset.id)">
+        Personalizar prato
+      </button>
+        <button class="botao" data-id="2">
+    adicionar ao carrinho
+    </button>
+      
+
     </details>
   </li>
 </ul>
@@ -48,7 +66,10 @@
             <button id="btn-confirmar-personalizacao">Confirmar e ir para pedido</button>
         </div>
     </div>
-
+    <div class="toast" id="toast">✅ Produto adicionado ao carrinho!</div>
+ 
+    <script src="js/carrinho.js"></script>
     <script src="js/cardapio.js"></script>
+   
 </body>
 </html>
