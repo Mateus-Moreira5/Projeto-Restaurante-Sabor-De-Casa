@@ -35,11 +35,15 @@
             </select>
 
             <label>Tipo de Entrega:</label>
-            <div>
-                <input type="radio" id="retirada" name="tipoEntrega" value="Retirada" checked>
-                <label for="retirada">Retirada no local</label>
-                <input type="radio" id="delivery" name="tipoEntrega" value="Delivery">
-                <label for="delivery">Delivery</label>
+            <div class="opcoes-entrega">
+                <label class="opcao-entrega" for="retirada">
+                    <span>Retirada no local</span>
+                    <input type="radio" id="retirada" name="tipoEntrega" value="Retirada" checked>
+                </label>
+                <label class="opcao-entrega" for="delivery">
+                    <span>Delivery</span>
+                    <input type="radio" id="delivery" name="tipoEntrega" value="Delivery">
+                </label>
             </div>
 
             <div id="campos-endereco" style="display: none;">
