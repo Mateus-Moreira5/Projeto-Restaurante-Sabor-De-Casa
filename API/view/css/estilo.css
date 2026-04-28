@@ -422,11 +422,42 @@ details p {
     margin-top: 5px;
 }
 .botao-personalizar{
-     background-color: #a93226;
+    background-color: #a93226;
     color:white;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
     margin-top: 5px;
 
+}
+.tittle{
+    align-items: center;
+}
+
+section{
+     width: auto;
+      padding: 15px;
+      border: 2px solid #333;
+      background-color: #f4f4f4;
+      border-radius: 10px;
+      margin-bottom: 5px;
+}
+.imagem1{
+  position: relative; /* referência para a imagem */
+  padding: 16px;
+  min-height: auto;  /* garante espaço para a imagem aparecer */
+   overflow: hidden;
+}
+
+.imagem-mapa {
+  position: absolute;
+  top: 0;
+  right: 0;          /* imagem no canto direito da section */
+  width: 60%;      /* ajuste o tamanho que quiser */
+  height: 100%;
+  object-fit: cover; /* a imagem preenche sem distorcer */
+  border-radius: 8px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
