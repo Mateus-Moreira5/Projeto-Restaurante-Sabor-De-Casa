@@ -7,7 +7,7 @@
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: #fdf8f5;
-    color: #333;
+    color: #922b21;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -366,7 +366,7 @@ form button[type="button"]:hover {
 footer {
     text-align: center;
     padding: 20px;
-    background: #e67e22;
+    background: #c0392b;
     color: white;
     font-size: 0.9rem;
     border-top: 4px solid #c0392b;
@@ -483,4 +483,137 @@ section{
   transform: translateX(100%);
   opacity: 0;
   transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+
+.institucional-page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.institucional-page section {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.institucional-hero {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.2fr);
+    gap: 24px;
+    align-items: center;
+}
+
+.institucional-hero--texto {
+    grid-template-columns: minmax(280px, 760px);
+    justify-content: center;
+}
+
+.hero-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero-etiqueta {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #fbe3d8;
+    color: #a93226;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.hero-texto h2,
+.institucional-equipe h3,
+.texto-bloco h3,
+.destaque-item h3 {
+    color: #922b21;
+}
+
+.hero-texto h2 {
+    font-size: 2.4rem;
+}
+
+.hero-texto p,
+.texto-bloco p,
+.destaque-item p,
+.membro-equipe span {
+    color: #5c5048;
+    line-height: 1.7;
+}
+
+.hero-imagem img {
+    width: 100%;
+    min-height: 420px;
+    display: block;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.institucional-destaques,
+.institucional-conteudo,
+.equipe-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.institucional-destaques {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.institucional-conteudo,
+.equipe-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.destaque-item,
+.texto-bloco,
+.membro-equipe {
+    background: #fff;
+    border: 1px solid #eadfd7;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.destaque-item h3,
+.texto-bloco h3,
+.institucional-equipe h3 {
+    margin-bottom: 12px;
+}
+
+.membro-equipe {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.membro-equipe strong {
+    color: #333;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+    .institucional-hero,
+    .institucional-destaques,
+    .institucional-conteudo,
+    .equipe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-texto h2 {
+        font-size: 2rem;
+    }
+
+    .hero-imagem img {
+        min-height: 280px;
+    }
 }
