@@ -5,43 +5,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sabor de Casa</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Sabor de Casa</h1>
-        <p>Comida caseira com ingredientes frescos da região</p>
+        <div class="topo-container">
+            <h1>Sabor de Casa</h1>
+            <p>Comida caseira com ingredientes frescos da região</p>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="institucional.html">Nossa História</a>
+            <a href="admin.html">Área do Chef</a>
+            <a href="carrinho.html">Carrinho</a>
+        </nav>
     </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="cardapio.html">Cardápio</a>
-        <a href="institucional.html">Nossa História</a>
-        <a href="admin.html">Área do Chef</a>
-        <a href="carrinho.html">Carrinho</a>
-    </nav>
-    <main>
-        <section>
-           <h2 class = "tittle">Seja Bem-vindo!</h2>
-            <p>No Sabor De Casa, cada prato é preparado com carinho para trazer o verdadeiro gostinho da comida caseira. Nosso ambiente acolhedor convida você a se sentir à vontade, como se estivesse na sua própria casa. Valorizamos ingredientes frescos e receitas tradicionais que despertam memórias e emoções. Aqui, cada refeição é uma experiência simples, mas cheia de sabor e afeto. Venha viver momentos especiais ao redor de uma boa comida.</p>
-            <p>Confira nosso <a href="cardapio.html">cardápio interativo</a> e faça seu pedido agora mesmo.</p>
-        </section>
-       <details class="details">
-        <summary class="tittle"> Localização </summary> 
-        <section class="imagem1">
-            <img src="images/origem-e-historia-da-feijoada.webp" class = "imagem-mapa">
-            <p>Venha nos visitar: </p>
-            <p>Rua do saBOR De Casa - 1234, Bairro Morada Do Sol</p>
-            <p>Referencia:</p>
-            <p>Perto a igreja São Cristovão</p>
-        </section></details>
-        <details class="details">
-        <summary class="tittle"> Funcionamento </summary> 
-        <section class="imagem1">
-            <img src="images/origem-e-historia-da-feijoada.webp" class = "imagem-mapa">
-            <p>Segunda à sexta: 10:00 às 20:00</p>
-            <p>Sabado e Domingo: 08:00 às 23:00 </p>
-        </section></details>
-    </main>
-    <footer> Sabor de Casa &copy; 2026 </footer>
-    <script src="js/animacao.js"></script>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Faça seu evento conosco</h2>
+            <p>Ambientes charmosos para almoços especiais, confraternizações e muito mais.</p>
+            <a href="#fale-conosco" class="btn-hero">Entre em contato</a>
+        </div>
+    </section>
+
+    <section class="sobre">
+        <div class="container">
+            <div class="sobre-grid">
+                <div class="sobre-texto">
+                    <h2>O Sabor de Casa</h2>
+                    <p>O Sabor de Casa possui uma ampla estrutura com ambientes pensados para que você se sinta em casa. Além do nosso salão aconchegante, oferecemos delivery das nossas delícias diretamente na sua casa ou trabalho.</p>
+                    <p>Durante o almoço, os clientes podem saborear um buffet espetacular, com pratos que mudam diariamente, sempre preparados com ingredientes selecionados.</p>
+                    
+                    <h3>Horário de funcionamento</h3>
+                    <ul class="horarios">
+                        <li><strong>Almoço</strong><br>Segunda a Domingo – 11h00 às 15h</li>
+                        <li><strong>Jantar</strong><br>Segunda a Domingo – 18h00 às 23h</li>
+                    </ul>
+                    <p>
+                        <strong>Telefone:</strong> (11) 99999-9999<br>
+                        <strong>Contato:</strong> contato@sabordecasa.com.br<br>
+                        <strong>CNPJ:</strong> 12.345.678/0001-99
+                    </p>
+                </div>
+                <div class="sobre-imagem">
+                    <img src="images/Restaurante.png" alt="Foto do restaurante Sabor de Casa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="diferenciais">
+        <div class="container">
+            <h2>Prêmios e reconhecimento</h2>
+            <div class="cards-diferenciais">
+                <div class="card">
+                    <i class="fas fa-award"></i>
+                    <h3>Melhor Comida Caseira 2025</h3>
+                    <p>Premiado pela revista Sabores Regionais.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Chef Destaque</h3>
+                    <p>Marcos Oliveira reconhecido entre os 10 melhores chefs locais.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Selo Verde</h3>
+                    <p>Práticas sustentáveis e ingredientes orgânicos certificados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="trabalhe-conosco">
+        <div class="container">
+            <h2>Trabalhe conosco</h2>
+            <p>Quer fazer parte do nosso time? Envie seu currículo ou inscreva-se em nossas vagas disponíveis.</p>
+            <a href="mailto:vagas@sabordecasa.com.br" class="btn">Ver vagas disponíveis</a>
+        </div>
+    </section>
+
+    <section id="fale-conosco" class="fale-conosco">
+        <div class="container">
+            <h2>Fale conosco</h2>
+            <form class="form-contato">
+                <div class="campo">
+                    <label for="nome">Seu nome *</label>
+                    <input type="text" id="nome" required>
+                </div>
+                <div class="campo">
+                    <label for="telefone">Número de telefone *</label>
+                    <input type="tel" id="telefone" required>
+                </div>
+                <div class="campo">
+                    <label for="email">Seu e-mail *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="campo">
+                    <label for="assunto">Assunto *</label>
+                    <input type="text" id="assunto" required>
+                </div>
+                <div class="campo">
+                    <label for="mensagem">Sua pergunta *</label>
+                    <textarea id="mensagem" rows="4" required></textarea>
+                </div>
+                <div class="campo checkbox">
+                    <input type="checkbox" id="consentimento" required>
+                    <label for="consentimento">Concordo com o armazenamento e tratamento dos meus dados pela equipe.</label>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="endereco">
+        <div class="container">
+            <h2>Onde estamos</h2>
+            <div class="endereco-grid">
+                <div class="info-endereco">
+                    <p><strong>Rua Jaime da Silveira</strong><br>
+                    Bairro Morada do Sol, Teresina - PI<br>
+                    CEP 64055-295, Brasil</p>
+                </div>
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.590180494823!2d-42.790000!3d-5.090000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMDUnMjQuMCJTIDQywrA0NycwMC4wIlc!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container footer-conteudo">
+            <div class="footer-coluna">
+                <h3>Sabor de Casa</h3>
+                <div class="redes-sociais">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-coluna">
+                <h4>Contato</h4>
+                <p><i class="fas fa-envelope"></i> contato@sabordecasa.com.br</p>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Sabor de Casa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
