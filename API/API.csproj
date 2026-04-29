@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="DTOs\PedidoDTO\" />
       <Folder Include="Repository\Interfaces\" />
     </ItemGroup>
 
