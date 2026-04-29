@@ -4,7 +4,7 @@ public record PratoResponseDTO(
     Guid IdPrato,
     string NomePrato,
     string Descricao,
-    string InfoIngradientes, 
+    string InfoIngredientes, 
     string Acompanhamentos,
     decimal Preco,
     bool Disponivel

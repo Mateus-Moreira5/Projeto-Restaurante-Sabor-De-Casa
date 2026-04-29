@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace API.Models;
 
 public class Prato
@@ -12,6 +14,7 @@ public class Prato
 
     public Prato(){ }
 
+    [SetsRequiredMembers]
     public Prato (string nomePrato, string? descricao, string infoIngredientes, string acompanhamentos, decimal preco)
     {
         IdPrato = Guid.NewGuid();
