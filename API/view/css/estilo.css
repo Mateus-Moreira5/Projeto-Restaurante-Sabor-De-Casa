@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7,13 +9,48 @@
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: #fdf8f5;
-    color: #922b21;
+    color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* ---------- Header ---------- */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: #c0392b;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+}
+
+a:hover {
+    color: #a93226;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+h2 {
+    color: #922b21;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #922b21;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
 header {
     background: #c0392b;
     color: white;
@@ -32,11 +69,10 @@ header p {
     opacity: 0.9;
 }
 
-/* ---------- Navegação ---------- */
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     background: #c0392b;
     padding: 12px 20px;
     flex-wrap: wrap;
@@ -62,7 +98,6 @@ nav button:hover {
     transform: translateY(-1px);
 }
 
-/* ---------- Conteúdo principal ---------- */
 main {
     flex: 1;
     max-width: 1100px;
@@ -71,7 +106,215 @@ main {
     padding: 30px 20px;
 }
 
-/* ---------- Cards de pratos (cardápio) ---------- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x600/333/fff?text=Sabor+de+Casa');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+.btn-hero,
+.btn {
+    display: inline-block;
+    background: #e67e22;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-hero:hover,
+.btn:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+section {
+    padding: 60px 0;
+}
+
+.sobre,
+.diferenciais,
+.trabalhe-conosco,
+.fale-conosco,
+.endereco {
+    background: #fff;
+}
+
+.diferenciais,
+.fale-conosco {
+    background: #fdf8f5;
+}
+
+.sobre-grid,
+.endereco-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.sobre-texto p,
+.info-endereco p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.sobre-imagem img,
+.mapa iframe {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.horarios {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.horarios li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.cards-diferenciais {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 2.5rem;
+    color: #e67e22;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="password"],
+form input[type="email"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
+}
+
+form .campo {
+    margin-bottom: 20px;
+}
+
+form .campo.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form .opcoes-entrega {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.opcao-entrega {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+form button[type="submit"],
+form button[type="button"],
+.btn {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+form button[type="submit"]:hover,
+form button[type="button"]:hover,
+.btn:hover {
+    background: #a93226;
+}
+
+#campos-endereco {
+    background: #f9f5f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
 .card-prato {
     display: flex;
     border: 1px solid #e0d6cc;
@@ -79,13 +322,13 @@ main {
     margin-bottom: 25px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card-prato:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
 .card-prato.esgotado {
@@ -160,7 +403,6 @@ main {
     cursor: not-allowed;
 }
 
-/* ---------- Modal de personalização ---------- */
 .modal {
     display: none;
     position: fixed;
@@ -169,7 +411,7 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.5);
     justify-content: center;
     align-items: center;
 }
@@ -244,92 +486,8 @@ main {
     background: #219a52;
 }
 
-/* ---------- Formulários em geral ---------- */
-form {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-form label {
-    display: block;
-    margin: 15px 0 5px;
-    font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="tel"],
-form input[type="password"],
-form select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-form input[type="radio"] {
-    margin-right: 5px;
-}
-
-form div {
-    margin: 10px 0;
-}
-
-.opcoes-entrega {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.opcao-entrega {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 0;
-}
-
-.opcao-entrega span {
-    font-weight: bold;
-}
-
-.opcao-entrega input[type="radio"] {
-    margin: 0;
-}
-
-form button[type="submit"],
-form button[type="button"] {
-    background: #c0392b;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-    transition: background 0.2s;
-}
-
-form button[type="submit"]:hover,
-form button[type="button"]:hover {
-    background: #a93226;
-}
-
-#campos-endereco {
-    background: #f9f5f0;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-/* ---------- Área administrativa ---------- */
-#tela-login, #tela-admin {
+#tela-login,
+#tela-admin {
     max-width: 600px;
     margin: 0 auto;
 }
@@ -362,129 +520,58 @@ form button[type="button"]:hover {
     background: #a93226;
 }
 
-/* ---------- Footer ---------- */
 footer {
-    text-align: center;
-    padding: 20px;
     background: #c0392b;
     color: white;
-    font-size: 0.9rem;
+    padding: 40px 0 0;
     border-top: 4px solid #c0392b;
+    text-align: center;
 }
 
-a {
-    color: #c0392b;
-    text-decoration: none;
+.footer-conteudo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.footer-coluna h3,
+.footer-coluna h4 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.footer-coluna p {
+    margin-bottom: 8px;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.redes-sociais a {
+    color: white;
+    font-size: 1.5rem;
     transition: color 0.2s;
 }
 
-a:hover {
-    color: #a93226;
-    text-decoration: underline;
+.redes-sociais a:hover {
+    color: #f1c40f;
 }
 
-@media (max-width: 768px) {
-    .card-prato {
-        flex-direction: column;
-    }
-    .card-prato img {
-        width: 100%;
-        height: 200px;
-    }
-    nav {
-        gap: 10px;
-    }
-    header h1 {
-        font-size: 1.7rem;
-    }
+.footer-copy {
+    background: rgba(0,0,0,0.15);
+    padding: 15px;
+    font-size: 0.9rem;
+    text-align: center;
 }
-details {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 12px;
-  background-color: #fff;
-}
-details[open] {
-  background-color: #fff8f0;
-  border-color: #e74c3c;
-}
-
-summary {
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  list-style: none;
-}
-
-summary::-webkit-details-marker {
-  display: none; /* remove seta padrão */
-}
-
-summary::after {
-  content: " ＋";
-  color: #e74c3c;
-  float: right;
-}
-
-details[open] summary::after {
-  content: " －";
-}
-
-details p {
-  margin-top: 8px;
-  color: #555;
-  font-size: 0.95rem;
-}
-.botao{
-    background-color: #a93226;
-    color:white;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-.botao-personalizar{
-    background-color: #a93226;
-    color:white;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 5px;
-
-}
-.tittle{
-    align-items: center;
-}
-
-section{
-     width: auto;
-      padding: 15px;
-      border: 2px solid #333;
-      background-color: #f4f4f4;
-      border-radius: 10px;
-      margin-bottom: 5px;
-}
-.imagem1{
-  position: relative; /* referência para a imagem */
-  padding: 16px;
-  min-height: auto;  /* garante espaço para a imagem aparecer */
-   overflow: hidden;
-}
-
-.imagem-mapa {
-  position: absolute;
-  top: 0;
-  right: 0;          /* imagem no canto direito da section */
-  width: 60%;      /* ajuste o tamanho que quiser */
-  height: 100%;
-  object-fit: cover; /* a imagem preenche sem distorcer */
-  border-radius: 8px;
-  transform: translateX(100%);
-  opacity: 0;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
 
 .institucional-page {
     display: flex;
@@ -552,10 +639,9 @@ section{
 .hero-imagem img {
     width: 100%;
     min-height: 420px;
-    display: block;
     object-fit: cover;
     border-radius: 16px;
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
 }
 
 .institucional-destaques,
@@ -581,7 +667,7 @@ section{
     border: 1px solid #eadfd7;
     border-radius: 14px;
     padding: 24px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
 .destaque-item h3,
@@ -601,7 +687,63 @@ section{
     font-size: 1.05rem;
 }
 
+details {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background-color: #fff;
+}
+
+details[open] {
+    background-color: #fff8f0;
+    border-color: #e74c3c;
+}
+
+summary {
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: " ＋";
+    color: #e74c3c;
+    float: right;
+}
+
+details[open] summary::after {
+    content: " －";
+}
+
+details p {
+    margin-top: 8px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.botao,
+.botao-personalizar {
+    background-color: #a93226;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.tittle {
+    text-align: center;
+}
+
 @media (max-width: 768px) {
+    .sobre-grid,
+    .endereco-grid,
     .institucional-hero,
     .institucional-destaques,
     .institucional-conteudo,
@@ -609,11 +751,38 @@ section{
         grid-template-columns: 1fr;
     }
 
+    .hero-content h2,
     .hero-texto h2 {
         font-size: 2rem;
     }
 
     .hero-imagem img {
         min-height: 280px;
+    }
+
+    .card-prato {
+        flex-direction: column;
+    }
+
+    .card-prato img {
+        width: 100%;
+        height: 200px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 1.7rem;
+    }
+
+    .cards-diferenciais {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form {
+        padding: 20px;
     }
 }
