@@ -15,5 +15,6 @@ public class PratoConfiguration : IEntityTypeConfiguration<Prato>
         builder.Property(p => p.Acompanhamentos);
         builder.Property(p => p.Preco).HasColumnType("decimal(8,2)").IsRequired();
         builder.Property(p => p.Disponivel).IsRequired();
+        builder.Property(p => p.UrlImagem);
     }
 }

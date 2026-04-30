@@ -5,5 +5,6 @@ public record CriarPratoDTO(
     string Descricao,
     string InfoIngrediente,
     string Acompanhamento,
+    string UrlImagem,
     decimal Preco
     );

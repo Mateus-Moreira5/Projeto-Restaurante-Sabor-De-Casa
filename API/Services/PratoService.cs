@@ -1,9 +1,7 @@
-using System.Xml;
 using API.DTOs.PratoDTOs;
 using API.Models;
 using API.Repository.Interfaces;
 using API.Services.Interfaces;
-using Microsoft.JSInterop.Infrastructure;
 
 namespace API.Services;
 
@@ -18,6 +16,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             p.Descricao,
             p.InfoIngredientes,
             p.Acompanhamentos,
+            p.UrlImagem,
             p.Preco,
             p.Disponivel
         )).ToList();
@@ -32,6 +31,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             prato.Descricao,
             prato.InfoIngredientes,
             prato.Acompanhamentos,
+            prato.UrlImagem,
             prato.Preco,
             prato.Disponivel);
     }
@@ -43,7 +43,8 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             dto.Descricao,
             dto.InfoIngrediente,
             dto.Acompanhamento,
-            dto.Preco
+            dto.Preco,
+            dto.UrlImagem
             );
         var criado = await pratoRepository.CreateAsync(prato);
         return new PratoResponseDTO(
@@ -52,8 +53,10 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             criado.Descricao,
             criado.InfoIngredientes,
             criado.Acompanhamentos,
+            criado.UrlImagem,
             criado.Preco,
-            criado.Disponivel);
+            criado.Disponivel
+            );
     }
 
     public async Task<PratoResponseDTO?> UpdateAsync(Guid id, AtualizarPratoDTO dto)
@@ -67,6 +70,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
         if (dto.Acompanhamento != null) prato.Acompanhamentos = dto.Acompanhamento;
         if (dto.Preco != null) prato.Preco = dto.Preco.Value;
         if (dto.Disponivel != null) prato.Disponivel = dto.Disponivel.Value;
+        if (dto.UrlImagem != null) prato.UrlImagem = dto.UrlImagem;
 
         var atualizando = await pratoRepository.UpdateAsync(prato);
         if (atualizando == null) return null;
@@ -77,6 +81,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             atualizando.Descricao,
             atualizando.InfoIngredientes,
             atualizando.Acompanhamentos,
+            atualizando.UrlImagem,
             atualizando.Preco,
             atualizando.Disponivel
             );

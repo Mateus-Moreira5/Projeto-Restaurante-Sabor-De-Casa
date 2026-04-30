@@ -6,6 +6,7 @@ public record PratoResponseDTO(
     string Descricao,
     string InfoIngredientes, 
     string Acompanhamentos,
+    string UrlFoto,
     decimal Preco,
     bool Disponivel
     );

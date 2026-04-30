@@ -1,4 +1,8 @@
 using API.Data;
+using API.Repository;
+using API.Repository.Interfaces;
+using API.Services;
+using API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -8,6 +12,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IPratoRepository, PratoRepository>();
+builder.Services.AddScoped<IPratoService, PratoService>();
 
 var app = builder.Build();
 

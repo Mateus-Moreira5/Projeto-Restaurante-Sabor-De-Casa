@@ -8,6 +8,7 @@ public class Prato
     public required string NomePrato { get; set; }
     public string? Descricao { get; set; }
     public required string InfoIngredientes { get; set; }
+    public required string UrlImagem { get; set; }
     public required string Acompanhamentos { get; set; }
     public decimal Preco { get; set; }
     public bool Disponivel { get; set; }
@@ -15,7 +16,7 @@ public class Prato
     public Prato(){ }
 
     [SetsRequiredMembers]
-    public Prato (string nomePrato, string? descricao, string infoIngredientes, string acompanhamentos, decimal preco)
+    public Prato (string nomePrato, string? descricao, string infoIngredientes, string acompanhamentos, decimal preco, String urlImagem)
     {
         IdPrato = Guid.NewGuid();
         NomePrato = nomePrato;
@@ -24,5 +25,6 @@ public class Prato
         Acompanhamentos = acompanhamentos;
         Preco = preco;
         Disponivel = true;
+        UrlImagem = urlImagem;
     }
 }

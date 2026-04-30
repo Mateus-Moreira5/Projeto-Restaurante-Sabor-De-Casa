@@ -122,6 +122,10 @@ namespace API.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(8,2)");
 
+                    b.Property<string>("UrlImagem")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("IdPrato");
 
                     b.ToTable("Pratos");
