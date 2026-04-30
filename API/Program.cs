@@ -3,6 +3,8 @@ using API.Repository;
 using API.Repository.Interfaces;
 using API.Services;
 using API.Services.Interfaces;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IPratoRepository, PratoRepository>();
 builder.Services.AddScoped<IPratoService, PratoService>();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

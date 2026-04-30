@@ -5,7 +5,7 @@ public record AtualizarPratoDTO(
     string? Descricao,
     string? InfoIngrediente,
     string? Acompanhamento,
-    string UrlImagem,
+    string? UrlImagem,
     decimal? Preco,
     bool? Disponivel 
     );

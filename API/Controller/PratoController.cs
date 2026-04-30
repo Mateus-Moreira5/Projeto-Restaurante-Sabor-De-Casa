@@ -16,9 +16,10 @@ public class PratoController(IPratoService pratoService) : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ActionName("GetByIdAsync")]
     public async Task<IActionResult> GetByIdAsync(Guid id)
     {
-        var prato = pratoService.GetByIdAsync(id);
+        var prato = await pratoService.GetByIdAsync(id);
         if (prato == null) return NotFound();
         return Ok(prato);
     }
@@ -26,8 +27,8 @@ public class PratoController(IPratoService pratoService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync(CriarPratoDTO dto)
     { 
-        var prato = await pratoService.CreateAsync(dto);
-        return CreatedAtAction(nameof(GetByIdAsync), new { id = prato.IdPrato }, prato);
+        var criado = await pratoService.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetByIdAsync), new { id = criado.IdPrato }, criado);
     }
 
     [HttpPut("{id}")]
@@ -35,6 +36,7 @@ public class PratoController(IPratoService pratoService) : ControllerBase
     {
         var atualizado = await pratoService.UpdateAsync(id, dto);
         if (atualizado is null) return NotFound();
+        return Ok(atualizado);
     }
 
     [HttpDelete("{id}")]
