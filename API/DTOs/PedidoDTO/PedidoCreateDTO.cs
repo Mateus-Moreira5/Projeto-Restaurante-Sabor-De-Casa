@@ -4,5 +4,5 @@ public record PedidoCreateDTO(
     Guid FkCodigoPedido,
     Guid FkIdPrato,
     int Quantidade,
-    string? Personalidade
+    string? Personalizacao
     );

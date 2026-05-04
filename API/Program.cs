@@ -26,7 +26,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
-    app.Map("/", () => Results.Redirect("/scalar"));
 }
 
 app.UseHttpsRedirection();
