@@ -25,14 +25,14 @@ public class PratoController(IPratoService pratoService) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAsync(CriarPratoDTO dto)
+    public async Task<IActionResult> CreateAsync(CriarPratoDto dto)
     { 
         var criado = await pratoService.CreateAsync(dto);
         return CreatedAtAction(nameof(GetByIdAsync), new { id = criado.IdPrato }, criado);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(Guid id, AtualizarPratoDTO dto)
+    public async Task<IActionResult> UpdateAsync(Guid id, AtualizarPratoDto dto)
     {
         var atualizado = await pratoService.UpdateAsync(id, dto);
         if (atualizado is null) return NotFound();

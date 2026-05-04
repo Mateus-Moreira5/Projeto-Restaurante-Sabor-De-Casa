@@ -1,6 +1,6 @@
 namespace API.DTOs.PedidoDTO;
 
-public record PedidoCreateDTO(
+public record PedidoCreateDto(
     Guid FkCodigoPedido,
     Guid FkIdPrato,
     int Quantidade,

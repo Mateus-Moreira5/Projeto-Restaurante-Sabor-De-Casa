@@ -1,6 +1,6 @@
 namespace API.DTOs.FormularioPedidoDTO;
 
-public record FormularioPedidoResponseDTO(
+public record FormularioPedidoResponseDto(
     Guid CodigoPedido,
     string Nome,
     string Telefone,

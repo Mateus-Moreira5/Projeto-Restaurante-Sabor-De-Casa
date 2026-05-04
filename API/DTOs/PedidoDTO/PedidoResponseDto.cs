@@ -1,6 +1,6 @@
 namespace API.DTOs.PedidoDTO;
 
-public record PedidoResponseDTO(
+public record PedidoResponseDto(
     Guid IdPedido,
     Guid FkCodigoPedido,
     Guid FkIdPrato,

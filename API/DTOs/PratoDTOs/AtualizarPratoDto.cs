@@ -1,6 +1,6 @@
 namespace API.DTOs.PratoDTOs;
 
-public record AtualizarPratoDTO( 
+public record AtualizarPratoDto( 
     string? NomePrato,
     string? Descricao,
     string? InfoIngrediente,

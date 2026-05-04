@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace API.Validators;
 
-public class AtualizarPratoValidator : AbstractValidator<AtualizarPratoDTO>
+public class AtualizarPratoValidator : AbstractValidator<AtualizarPratoDto>
 {
     public AtualizarPratoValidator()
     {

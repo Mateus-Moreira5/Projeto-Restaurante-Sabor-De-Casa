@@ -7,10 +7,10 @@ namespace API.Services;
 
 public class PratoService(IPratoRepository pratoRepository) : IPratoService
 {
-    public async Task<List<PratoResponseDTO>> ListAllAsync()
+    public async Task<List<PratoResponseDto>> ListAllAsync()
     {
         var pratos = await pratoRepository.ListAllAsync();
-        return pratos.Select(p => new PratoResponseDTO(
+        return pratos.Select(p => new PratoResponseDto(
             p.IdPrato,
             p.NomePrato,
             p.Descricao,
@@ -22,11 +22,11 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
         )).ToList();
     }
     
-    public async Task<PratoResponseDTO?> GetByIdAsync(Guid id)
+    public async Task<PratoResponseDto?> GetByIdAsync(Guid id)
     {
         var prato = await pratoRepository.GetByIdAsync(id);
         if (prato is null) return null;
-        return new PratoResponseDTO(prato.IdPrato,
+        return new PratoResponseDto(prato.IdPrato,
             prato.NomePrato,
             prato.Descricao,
             prato.InfoIngredientes,
@@ -36,7 +36,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             prato.Disponivel);
     }
 
-    public async Task<PratoResponseDTO> CreateAsync(CriarPratoDTO dto)
+    public async Task<PratoResponseDto> CreateAsync(CriarPratoDto dto)
     {
         var prato = new Prato( 
             dto.NomePrato,
@@ -47,7 +47,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             dto.UrlImagem
             );
         var criado = await pratoRepository.CreateAsync(prato);
-        return new PratoResponseDTO(
+        return new PratoResponseDto(
             criado.IdPrato,
             criado.NomePrato,
             criado.Descricao,
@@ -59,7 +59,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
             );
     }
 
-    public async Task<PratoResponseDTO?> UpdateAsync(Guid id, AtualizarPratoDTO dto)
+    public async Task<PratoResponseDto?> UpdateAsync(Guid id, AtualizarPratoDto dto)
     {
         var prato = await pratoRepository.GetByIdAsync(id);
         if (prato == null) return null;
@@ -75,7 +75,7 @@ public class PratoService(IPratoRepository pratoRepository) : IPratoService
         var atualizando = await pratoRepository.UpdateAsync(prato);
         if (atualizando == null) return null;
 
-        return new PratoResponseDTO(
+        return new PratoResponseDto(
             atualizando.IdPrato,
             atualizando.NomePrato,
             atualizando.Descricao,

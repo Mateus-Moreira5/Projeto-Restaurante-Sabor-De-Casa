@@ -1,6 +1,6 @@
 namespace API.DTOs.PratoDTOs;
 
-public record PratoResponseDTO(
+public record PratoResponseDto(
     Guid IdPrato,
     string NomePrato,
     string Descricao,

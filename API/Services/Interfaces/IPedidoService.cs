@@ -4,8 +4,8 @@ namespace API.Services.Interfaces;
 
 public interface IPedidoService
 {
-    Task<List<PedidoResponseDTO>> ListAllAsync();
-    Task<PedidoResponseDTO> GetByIdAsync(Guid id);
-    Task<PedidoResponseDTO> CreateAsync(PedidoCreateDTO dto);
+    Task<List<PedidoResponseDto>> ListAllAsync();
+    Task<PedidoResponseDto> GetByIdAsync(Guid id);
+    Task<PedidoResponseDto> CreateAsync(PedidoCreateDto dto);
     Task<bool> DeleteAsync(Guid id);
 }

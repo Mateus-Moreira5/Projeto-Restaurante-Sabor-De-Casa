@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace API.Models;
 
 public class FormularioPedido
@@ -15,6 +17,7 @@ public class FormularioPedido
     
     public FormularioPedido() { }
 
+    [SetsRequiredMembers]
     public FormularioPedido(string nome, string telefone, string tipoPagamento, string tipoEntrega, string? cep, string? logradouro, string? numero, string? bairro, string? complemento)
     {
         CodigoPedido = Guid.NewGuid();

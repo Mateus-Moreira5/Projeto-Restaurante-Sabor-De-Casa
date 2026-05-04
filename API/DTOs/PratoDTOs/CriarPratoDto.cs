@@ -1,6 +1,6 @@
 namespace API.DTOs.PratoDTOs;
 
-public record CriarPratoDTO(
+public record CriarPratoDto(
     string NomePrato,
     string Descricao,
     string InfoIngrediente,
