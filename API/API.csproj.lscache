@@ -62,15 +62,16 @@ data/
   FormularioPedidoConfiguration.cs
   PedidoConfiguration.cs
   PratoConfiguration.cs
-DTOs/
- FormularioPedidoDTO/FormularioPedidoResponseDTO.cs
- PedidoDTO/
-  PedidoCreateDTO.cs
-  PedidoResponseDTO.cs
- PratoDTOs/
-  AtualizarPratoDTO.cs
-  CriarPratoDTO.cs
-  PratoResponseDTO.cs
+DTOs/FormularioPedidoDTO/
+ FormularioPedidoCreateDTO.cs
+ FormularioPedidoResponseDTO.cs
+DTOs/PedidoDTO/
+ PedidoCreateDTO.cs
+ PedidoResponseDTO.cs
+DTOs/PratoDTOs/
+ AtualizarPratoDTO.cs
+ CriarPratoDTO.cs
+ PratoResponseDTO.cs
 Migrations/
  20260427173154_Initial.cs
  20260427173154_Initial.Designer.cs
@@ -87,11 +88,21 @@ obj/Debug/net10.0/
  API.GlobalUsings.g.cs
 Program.cs
 Repository/
- Interfaces/IPratoRepository.cs
+ FormularioPedidoRepository.cs
+ Interfaces/
+  IFormularioPedidoRepository.cs
+  IPedidoRepository.cs
+  IPratoRepository.cs
+ PedidoRepository.cs
  PratoRepository.cs
-Services/
- Interfaces/IPratoService.cs
- PratoService.cs
+Services/Interfaces/
+ IFormularioPedidoService.cs
+ IPedidoService.cs
+ IPratoService.cs
+Services/PratoService.cs
+Validators/PratoVallidators/
+ AtualizarPratoValidator.cs
+ CriarPratoValidator.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.AspNetCore.App.Ref/10.0.7/ref/net10.0/
