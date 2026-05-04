@@ -1,8 +1,8 @@
 namespace API.DTOs.FormularioPedidoDTO;
 
-public record FormularioPedidoDTO(
+public record FormularioPedidoCreateDTO(
     string Nome,
-    string Telafone,
+    string Telefone,
     string TipoPagamento,
     string TipoEntrega,
     string? Cep,
