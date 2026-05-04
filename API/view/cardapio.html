@@ -17,148 +17,9 @@
         </nav>
     </header>
     <main>
-        <div id="pratos-container"></div>
-<ul>
-  <li>
-    <details>
-      <summary> Feijoada Completa</summary>
-      <p>Acompanha: Arroz, farofa, couve e laranja</p>
-      <p>Preço: R$ 45,00</p>
-      <p>Serve até 3 pessoas</p>
-
-      <button class="botao-personalizar" data-id="1"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-    
-       <button class="botao" onclick="adicionarItem({ produto: 'feijoada'})">
-      Adicionar ao Carrinho
-    </button>
-      
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Escondidinho de carne seca</summary>
-      <p>Ingredientes: </p>
-      <p>Preço: R$ 38,00</p>
-      <p>Serve ate 1 pessoa</p>
-      <button class="botao-personalizar" data-id="2"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'escondidinho de carne seca'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Frango grelhado executivo</summary>
-      <p>Acompanha: Arroz branco, feijao tropeiro e legumes salteados</p>
-      <p>Preco: R$ 32,00</p>
-      <p>Serve 1 pessoa</p>
-      <button class="botao-personalizar" data-id="3"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'frango grelhado executivo'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Parmegiana de frango</summary>
-      <p>Acompanha: Arroz, pure de batata e salada da casa</p>
-      <p>Preco: R$ 39,90</p>
-      <p>Serve ate 2 pessoas</p>
-      <button class="botao-personalizar" data-id="4"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'parmegiana de frango'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Strogonoff de carne</summary>
-      <p>Acompanha: Arroz branco e batata palha crocante</p>
-      <p>Preco: R$ 34,50</p>
-      <p>Serve 1 pessoa</p>
-      <button class="botao-personalizar" data-id="5"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'strogonoff de carne'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Lasanha bolonhesa</summary>
-      <p>Acompanha: Molho artesanal, queijo gratinado e manjericao</p>
-      <p>Preco: R$ 36,00</p>
-      <p>Serve ate 2 pessoas</p>
-      <button class="botao-personalizar" data-id="6"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'lasanha bolonhesa'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Peixe frito com arroz de coco</summary>
-      <p>Acompanha: Vinagrete, pure de macaxeira e arroz de coco</p>
-      <p>Preco: R$ 42,00</p>
-      <p>Serve ate 2 pessoas</p>
-      <button class="botao-personalizar" data-id="7"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'peixe frito com arroz de coco'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Moqueca de camarao</summary>
-      <p>Acompanha: Arroz branco, pirao e farofa amanteigada</p>
-      <p>Preco: R$ 49,90</p>
-      <p>Serve ate 3 pessoas</p>
-      <button class="botao-personalizar" data-id="8"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'moqueca de camarao'})">
-        Adicionar ao carrinho
-      </button>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary>Risoto de cogumelos</summary>
-      <p>Acompanha: Arroz arboreo, mix de cogumelos e parmesao</p>
-      <p>Preco: R$ 33,00</p>
-      <p>Serve 1 pessoa</p>
-      <button class="botao-personalizar" data-id="9"
-       onclick="personalizarPrato(this.dataset.id)">
-        Personalizar prato
-      </button>
-      <button class="botao" onclick="adicionarItem({ produto: 'risoto de cogumelos'})">
-        Adicionar ao carrinho
-      </button>
-      
-    </details>
-  </li>
-</ul>
+        <script>
+    carregarPratos2();
+</script>
     </main>
 
     <div id="modal-personalizacao" class="modal">
@@ -174,6 +35,6 @@
  
     <script src="js/carrinho.js"></script>
     <script src="js/cardapio.js"></script>
-   
+    <script src="js/cardapio2.js"></script>   
 </body>
 </html>

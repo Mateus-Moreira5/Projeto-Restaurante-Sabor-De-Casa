@@ -11,7 +11,7 @@ let escolhas = {};
 
 async function carregarPratos() {
     try {
-        const resp = await fetch(API_URL);
+        const resp = await fetch("//localhost:5158/pratos");
         const pratos = await resp.json();
         exibirPratos(pratos);
     } catch (erro) {
