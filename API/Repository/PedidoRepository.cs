@@ -23,7 +23,7 @@ public class PedidoRepository(AppDbContext context) : IPedidoRepository
         await context.SaveChangesAsync();
         return pedido;
     }
-
+    
     public async Task<bool> Delete(Guid id)
     {
         var pedido = await GetByIdAsync(id);
