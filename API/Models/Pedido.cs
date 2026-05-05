@@ -7,17 +7,20 @@ public class Pedido
     public Guid FkIdPrato { get; set; }
     public int Quantidade { get; set; }
     public string? Personalizacao { get; set; }
+    public bool Concluido { get; set; }
 
     public FormularioPedido? FormularioPedido { get; set; }
     public Prato? Prato { get; set; }
-    public Pedido() {}
 
-    public Pedido(Guid fkCodigoPedido, Guid fkIdPrato, int quantidade, string? personalizacao, FormularioPedido? formularioPedido, Prato? prato)
+    public Pedido() { }
+
+    public Pedido(Guid fkCodigoPedido, Guid fkIdPrato, int quantidade, string? personalizacao)
     {
         IdPedido = Guid.NewGuid();
         FkCodigoPedido = fkCodigoPedido;
         FkIdPrato = fkIdPrato;
         Quantidade = quantidade;
         Personalizacao = personalizacao;
+        Concluido = false;
     }
 }
