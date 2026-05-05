@@ -9,12 +9,18 @@ public class PedidoRepository(AppDbContext context) : IPedidoRepository
 {
     public async Task<Pedido?> GetByIdAsync(Guid id)
     {
-        return await context.ItensPedido.FindAsync(id);
+        return await context.ItensPedido
+            .Include(p => p.Prato)
+            .Include(p => p.FormularioPedido)
+            .FirstOrDefaultAsync(p => p.IdPedido == id);
     }
 
     public async Task<List<Pedido>> ListAllAsync()
     {
-        return await context.ItensPedido.ToListAsync();
+        return await context.ItensPedido
+            .Include(p => p.Prato)
+            .Include(p => p.FormularioPedido)
+            .ToListAsync();
     }
 
     public async Task<Pedido> CreateAsync(Pedido pedido)
@@ -23,7 +29,7 @@ public class PedidoRepository(AppDbContext context) : IPedidoRepository
         await context.SaveChangesAsync();
         return pedido;
     }
-    
+
     public async Task<bool> Delete(Guid id)
     {
         var pedido = await GetByIdAsync(id);
