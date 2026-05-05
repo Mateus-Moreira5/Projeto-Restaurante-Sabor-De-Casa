@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Painel do Proprietário</h1>
+         <nav id="nav-painel">
+            <button class="btn-secao ativo" data-secao="pratos">Gerenciar Pratos</button>
+            <button class="btn-secao" data-secao="financeiro">Controle Financeiro</button>
+            <button class="btn-secao" data-secao="historico">Histórico de Vendas</button>
+        </nav>
+
+       
+    </header>
+
+    <main>
+
+        <!-- MENU DE NAVEGAÇÃO DO PAINEL -->
+        <section id="secao-pratos" class="secao-painel ativa">
+            <h2>Gerenciar Pratos</h2>
+
+            <!-- Adicionar prato -->
+            <div class="painel-card">
+                <h3>Adicionar Novo Prato</h3>
+                <form id="form-novo-prato">
+                    <label for="novo-nome">Nome do prato:</label>
+                    <input type="text" id="novo-nome" placeholder="Ex: Frango Grelhado" required>
+
+                    <label for="nova-descricao">Descrição:</label>
+                    <input type="text" id="nova-descricao" placeholder="Ex: Com legumes e arroz">
+
+                    <label for="Ingredientes">Ingredientes:</label>
+                    <input type="text" id="ingredientes" placeholder="Ex: pão e alho">
+
+                    <label for="novo-preco">Preço (R$):</label>
+                    <input type="number" id="novo-preco" placeholder="0.00" step="0.01" min="0" required>
+                    <button type="submit">Adicionar Prato</button>
+                </form>
+            </div>
+            <div class="painel-card">
+                <h3>Pratos Cadastrados</h3>
+                <div id="lista-pratos-admin">
+                </div>
+            </div>
+        </section>
+
+        <section id="secao-financeiro" class="secao-painel" style="display:none;">
+            <h2>Controle Financeiro</h2>
+            <div class="painel-card">
+                <h3>Resumo do Período</h3>
+                <div class="filtro-periodo">
+                    <label for="periodo-financeiro">Período:</label>
+                    <select id="periodo-financeiro">
+                        <option value="hoje">Hoje</option>
+                        <option value="semana">Esta semana</option>
+                        <option value="mes" selected>Este mês</option>
+                        <option value="ano">Este ano</option>
+                    </select>
+                </div>
+                <div id="resumo-financeiro">
+                </div>
+            </div>
+            <div class="painel-card">
+                <h3>Novo Lançamento</h3>
+                <form id="form-lancamento">
+                    <label for="tipo-lancamento">Tipo:</label>
+                    <select id="tipo-lancamento">
+                        <option value="receita">Receita</option>
+                        <option value="despesa">Despesa</option>
+                    </select>
+
+                    <label for="desc-lancamento">Descrição:</label>
+                    <input type="text" id="desc-lancamento" placeholder="Ex: Compra de ingredientes" required>
+
+                    <label for="valor-lancamento">Valor (R$):</label>
+                    <input type="number" id="valor-lancamento" placeholder="0.00" step="0.01" min="0" required>
+
+                    <label for="data-lancamento">Data:</label>
+                    <input type="date" id="data-lancamento" required>
+
+                    <button type="submit">Registrar Lançamento</button>
+                </form>
+            </div>
+            <div class="painel-card">
+                <h3>Lançamentos Recentes</h3>
+                <div id="tabela-lancamentos">
+                </div>
+            </div>
+        </section>
+        <section id="secao-historico" class="secao-painel" style="display:none;">
+            <h2>Histórico de Vendas</h2>
+
+            <!-- Filtros -->
+            <div class="painel-card">
+                <h3>Filtrar Vendas</h3>
+                <div class="filtro-periodo">
+                    <label for="filtro-data-inicio">De:</label>
+                    <input type="date" id="filtro-data-inicio">
+
+                    <label for="filtro-data-fim">Até:</label>
+                    <input type="date" id="filtro-data-fim">
+
+                    <label for="filtro-prato">Prato:</label>
+                    <select id="filtro-prato">
+                        <option value="todos">Todos</option>
+                        <!-- Preenchido pelo JS -->
+                    </select>
+
+                    <button id="btn-filtrar-vendas">Filtrar</button>
+                </div>
+            </div>
+
+            <div class="painel-card">
+                <h3>Resumo</h3>
+                <div id="resumo-vendas">
+                </div>
+            </div>
+            <div class="painel-card">
+                <h3>Vendas Registradas</h3>
+                <div id="lista-historico-vendas">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sabor de Casa</p>
+    </footer>
+
+    <script src="js/painel.js"></script>
+</body>
+</html>
