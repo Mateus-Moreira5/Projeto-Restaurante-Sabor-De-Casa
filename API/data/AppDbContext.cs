@@ -10,7 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<Prato> Pratos { get; set; }
     public DbSet<FormularioPedido> FormulariosPedido { get; set; }
     public DbSet<Pedido> ItensPedido { get; set; }
-    public DbSet<Usuario> UsuarioAdm { get; set; }
+    public DbSet<UsuarioAdm> UsuarioAdm { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

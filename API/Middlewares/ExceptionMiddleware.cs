@@ -5,7 +5,7 @@ namespace API.Middlewares;
 
 public class ExceptionMiddleware (RequestDelegate next)
 {
-    public async Task InvokesAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {

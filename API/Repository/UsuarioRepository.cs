@@ -1,23 +1,23 @@
 using API.Data;
 using API.Migrations;
+using API.Models;
 using API.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using ModelUsuario = API.Models.Usuario;
 
 namespace API.Repository;
 
 public class UsuarioRepository(AppDbContext context) : IUsuarioRepository
 {
-    public async Task<ModelUsuario?> GetByEmailAsync(string email)
+    public async Task<UsuarioAdm?> GetByEmailAsync(string email)
     {
         return await context.UsuarioAdm
             .FirstOrDefaultAsync(u => u.Email == email);
     }
 
-    public async Task<ModelUsuario> CreateAsync(ModelUsuario usuario)
+    public async Task<UsuarioAdm> CreateAsync(UsuarioAdm usuarioAdm)
     { 
-        context.UsuarioAdm.Add(usuario);
+        context.UsuarioAdm.Add(usuarioAdm);
         await context.SaveChangesAsync();
-        return usuario;
+        return usuarioAdm;
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace API.Data.configuration;
 
-public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+public class UsuarioConfiguration : IEntityTypeConfiguration<UsuarioAdm>
 {
-    public void Configure(EntityTypeBuilder<Usuario> builder)
+    public void Configure(EntityTypeBuilder<UsuarioAdm> builder)
     {
         builder.ToTable("UsuariosAdm");
         builder.HasKey(u => u.Id);

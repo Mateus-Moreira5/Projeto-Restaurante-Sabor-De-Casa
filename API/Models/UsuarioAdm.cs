@@ -2,15 +2,15 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace API.Models;
 
-public class Usuario
+public class UsuarioAdm
 {
     public Guid Id { get; set; }
     public required string Email { get; set; }
     public required string Senha { get; set; }
-    public Usuario() { }
+    public UsuarioAdm() { }
 
     [SetsRequiredMembers]
-    public Usuario(string email, string senha)
+    public UsuarioAdm(string email, string senha)
     {
         Id = Guid.NewGuid();
         Email = email;
