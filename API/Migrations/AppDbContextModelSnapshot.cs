@@ -134,6 +134,28 @@ namespace API.Migrations
                     b.ToTable("Pratos");
                 });
 
+            modelBuilder.Entity("API.Models.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("UsuariosAdm", (string)null);
+                });
+
             modelBuilder.Entity("API.Models.Pedido", b =>
                 {
                     b.HasOne("API.Models.FormularioPedido", "FormularioPedido")
