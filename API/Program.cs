@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middlewares;
 using API.Repository;
 using API.Repository.Interfaces;
 using API.Services;
@@ -45,6 +46,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAll");
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
