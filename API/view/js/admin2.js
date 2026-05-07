@@ -1,27 +1,44 @@
-const USUARIO_CORRETO = "dono";
-const SENHA_CORRETA   = "1234";
+const API = 'http://localhost:5158/api';
 
-const PAGINA_ADMIN = "painel.html";
+async function login(email, senha) {
+  const response = await fetch(`${API}/auth/Login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, senha })
+  });
 
-const formLogin = document.getElementById("form-login");
-const erroLogin = document.getElementById("erro-login");
+  if (!response.ok) throw new Error('Usuário ou senha incorretos.');
 
-if (sessionStorage.getItem("adminLogado") === "true") {
-    window.location.href = PAGINA_ADMIN;
+  const data = await response.json();
+  localStorage.setItem('token', data.token);
+  return data;
 }
 
-formLogin.addEventListener("submit", function (e) {
-    e.preventDefault();
+function logout() {
+  localStorage.removeItem('token');
+  window.location.href = '/admin.html';
+}
 
-    const usuario = document.getElementById("usuario").value.trim();
-    const senha   = document.getElementById("senha").value;
+document.getElementById('form-login').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    if (usuario === USUARIO_CORRETO && senha === SENHA_CORRETA) {
-        sessionStorage.setItem("adminLogado", "true");
-        window.location.href = PAGINA_ADMIN;
-    } else {
-        erroLogin.style.display = "block";
-        document.getElementById("senha").value = "";
-        document.getElementById("senha").focus();
-    }
+  const email = document.getElementById('usuario').value;
+  const senha = document.getElementById('senha').value;
+  const btnLogin = document.querySelector('#form-login button[type="submit"]');
+  const msgErro = document.getElementById('erro-login');
+
+  msgErro.style.display = 'none';
+  btnLogin.disabled = true;
+  btnLogin.textContent = 'Entrando...';
+
+  try {
+    await login(email, senha);
+    window.location.href = 'painel.html';
+  } catch (erro) {
+    msgErro.textContent = erro.message;
+    msgErro.style.display = 'block';
+  } finally {
+    btnLogin.disabled = false;
+    btnLogin.textContent = 'Entrar';
+  }
 });
