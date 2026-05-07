@@ -3,10 +3,12 @@
 // ============================================================
 
 // --- PROTEÇÃO DA PÁGINA ---
-// Redireciona para o login se não estiver autenticado
 if (sessionStorage.getItem("adminLogado") !== "true") {
     window.location.href = "admin.html";
 }
+
+// --- URL BASE DA API (altere para o endereço real) ---
+const API_URL = "https://sua-api.com";
 
 // ============================================================
 // BOTÃO DE SAIR
@@ -28,11 +30,9 @@ botoesSec.forEach(function (btn) {
     btn.addEventListener("click", function () {
         const alvo = this.dataset.secao;
 
-        // Ativa o botão clicado
         botoesSec.forEach(function (b) { b.classList.remove("ativo"); });
         this.classList.add("ativo");
 
-        // Exibe a seção correspondente
         secoes.forEach(function (sec) {
             sec.style.display = sec.id === "secao-" + alvo ? "block" : "none";
             sec.classList.toggle("ativa", sec.id === "secao-" + alvo);
@@ -44,43 +44,52 @@ botoesSec.forEach(function (btn) {
 // SEÇÃO: GERENCIAR PRATOS
 // ============================================================
 
-// Dados dos pratos — substitua por chamada a API ou banco de dados
-let pratos = [
-    { id: 1, nome: "Feijoada Completa",  descricao: "Feijão preto com carnes e couve",     preco: 49.90, categoria: "prato-principal", disponivel: true  },
-    { id: 2, nome: "Frango ao Molho",    descricao: "Frango grelhado com molho especial",   preco: 38.50, categoria: "prato-principal", disponivel: true  },
-    { id: 3, nome: "Moqueca de Peixe",   descricao: "Peixe fresco com leite de coco",       preco: 56.00, categoria: "prato-principal", disponivel: false },
-    { id: 4, nome: "Pudim da Casa",      descricao: "Pudim de leite condensado artesanal",  preco: 18.00, categoria: "sobremesa",       disponivel: true  },
-];
+let pratos = [];
 
-let proximoId = pratos.length + 1;
+// --- Busca todos os pratos da API ao carregar ---
+async function carregarPratos() {
+    try {
+        const resposta = await fetch(API_URL + "/pratos");
 
+        if (!resposta.ok) throw new Error("Erro ao buscar pratos. Status: " + resposta.status);
+
+        pratos = await resposta.json();
+        renderizarPratos();
+
+    } catch (erro) {
+        console.error("Falha ao carregar pratos:", erro);
+        document.getElementById("lista-pratos-admin").innerHTML =
+            "<p>Não foi possível carregar os pratos. Verifique a conexão com a API.</p>";
+    }
+}
+
+// --- Renderiza a lista de pratos na tela ---
 function renderizarPratos() {
     const container = document.getElementById("lista-pratos-admin");
     container.innerHTML = "";
 
     if (pratos.length === 0) {
         container.innerHTML = "<p>Nenhum prato cadastrado.</p>";
+        atualizarFiltroPratos();
         return;
     }
 
     pratos.forEach(function (prato) {
         const item = document.createElement("div");
-        item.className = "prato-admin-item" + (prato.disponivel ? "" : " indisponivel");
+        item.className = "prato-admin-item";
 
         item.innerHTML =
             '<div class="prato-info">' +
-                '<strong>' + prato.nome + '</strong>' +
-                '<span class="prato-desc">' + prato.descricao + '</span>' +
-                '<span class="prato-preco">R$ ' + prato.preco.toFixed(2) + '</span>' +
-                '<span class="prato-categoria">' + prato.categoria + '</span>' +
+                '<strong>' + prato.nomePrato + '</strong>' +
+                '<span class="prato-desc">' + (prato.descricao || "") + '</span>' +
+                '<span class="prato-ingredientes">Ingredientes: ' + (prato.infoIngrediente || "—") + '</span>' +
+                '<span class="prato-acompanhamento">Acompanhamento: ' + (prato.acompanhamento || "—") + '</span>' +
+                '<span class="prato-preco">R$ ' + parseFloat(prato.preco).toFixed(2) + '</span>' +
+                (prato.urlImagem
+                    ? '<img class="prato-thumb" src="' + prato.urlImagem + '" alt="' + prato.nomePrato + '">'
+                    : '') +
             '</div>' +
             '<div class="prato-acoes">' +
-                '<span class="status-badge ' + (prato.disponivel ? "disponivel" : "fora") + '">' +
-                    (prato.disponivel ? "Disponível" : "Indisponível") +
-                '</span>' +
-                '<button onclick="toggleDisponibilidade(' + prato.id + ')">' +
-                    (prato.disponivel ? "Desativar" : "Ativar") +
-                '</button>' +
                 '<button class="btn-remover" onclick="removerPrato(' + prato.id + ')">Remover</button>' +
             '</div>';
 
@@ -90,75 +99,69 @@ function renderizarPratos() {
     atualizarFiltroPratos();
 }
 
-function toggleDisponibilidade(id) {
-    const prato = pratos.find(function (p) { return p.id === id; });
-    if (prato) {
-        prato.disponivel = !prato.disponivel;
-        renderizarPratos();
-    }
-}
-
-function removerPrato(id) {
+// --- Remove um prato via API ---
+async function removerPrato(id) {
     const prato = pratos.find(function (p) { return p.id === id; });
     if (!prato) return;
-    if (confirm('Remover "' + prato.nome + '" do cardápio?')) {
+
+    if (!confirm('Remover "' + prato.nomePrato + '" do cardápio?')) return;
+
+    try {
+        const resposta = await fetch(API_URL + "/pratos/" + id, {
+            method: "DELETE"
+        });
+
+        if (!resposta.ok) throw new Error("Erro ao remover prato. Status: " + resposta.status);
+
         pratos = pratos.filter(function (p) { return p.id !== id; });
         renderizarPratos();
+
+    } catch (erro) {
+        console.error("Falha ao remover prato:", erro);
+        alert("Não foi possível remover o prato. Verifique a conexão com a API.");
     }
 }
 
+// --- Adiciona um novo prato via API ---
 document.getElementById("form-novo-prato").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const nome        = document.getElementById("novo-nome").value.trim();
-    const descricao   = document.getElementById("nova-descricao").value.trim();
-    const preco       = parseFloat(document.getElementById("novo-preco").value);
-    const categoria   = document.getElementById("nova-categoria").value;
-    const ingredientes = document.getElementById("ingredientes").value.trim();
+    const nomePrato      = document.getElementById("nomePrato").value.trim();
+    const descricao      = document.getElementById("descricao").value.trim();
+    const infoIngrediente = document.getElementById("infoIngrediente").value.trim();
+    const acompanhamento = document.getElementById("acompanhamento").value.trim();
+    const urlImagem      = document.getElementById("urlImagem").value.trim();
+    const preco          = parseFloat(document.getElementById("preco").value);
 
-    if (!nome || isNaN(preco) || preco < 0) return;
+    if (!nomePrato || isNaN(preco) || preco < 0) return;
 
-    // Monta o objeto a ser enviado para a API
+    // Objeto com exatamente os campos da API
     const novoPrato = {
-        nome:        nome,
-        descricao:   descricao || "Sem descrição",
-        preco:       preco,
-        categoria:   categoria,
-        ingredientes: ingredientes || "",
-        disponivel:  true
+        nomePrato:       nomePrato,
+        descricao:       descricao       || "",
+        infoIngrediente: infoIngrediente || "",
+        acompanhamento:  acompanhamento  || "",
+        urlImagem:       urlImagem       || "",
+        preco:           preco
     };
 
     try {
-        // --- REQUISIÇÃO À API ---
-        // Substitua a URL e os headers conforme sua API
-        const resposta = await fetch("https://sua-api.com/pratos", {
+        const resposta = await fetch(API_URL + "/pratos", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
             body:    JSON.stringify(novoPrato)
         });
 
-        if (!resposta.ok) {
-            throw new Error("Erro ao cadastrar prato. Status: " + resposta.status);
-        }
+        if (!resposta.ok) throw new Error("Erro ao cadastrar prato. Status: " + resposta.status);
 
         const pratoSalvo = await resposta.json();
 
-        // Usa o ID retornado pela API; caso contrário, gera um local
-        pratos.push({
-            id:          pratoSalvo.id || proximoId++,
-            nome:        pratoSalvo.nome        || novoPrato.nome,
-            descricao:   pratoSalvo.descricao   || novoPrato.descricao,
-            preco:       pratoSalvo.preco        || novoPrato.preco,
-            categoria:   pratoSalvo.categoria    || novoPrato.categoria,
-            ingredientes: pratoSalvo.ingredientes || novoPrato.ingredientes,
-            disponivel:  true
-        });
-
+        pratos.push(pratoSalvo);
         this.reset();
         renderizarPratos();
 
     } catch (erro) {
-        console.error("Falha na requisição:", erro);
+        console.error("Falha ao cadastrar prato:", erro);
         alert("Não foi possível cadastrar o prato. Verifique a conexão com a API.");
     }
 });
@@ -167,13 +170,12 @@ document.getElementById("form-novo-prato").addEventListener("submit", async func
 // SEÇÃO: CONTROLE FINANCEIRO
 // ============================================================
 
-// Dados de lançamentos — substitua por chamada a API ou banco de dados
 let lancamentos = [
-    { id: 1, tipo: "receita",  descricao: "Vendas do almoço",         valor: 850.00, data: "2025-06-01" },
-    { id: 2, tipo: "despesa",  descricao: "Compra de ingredientes",    valor: 320.00, data: "2025-06-01" },
-    { id: 3, tipo: "receita",  descricao: "Vendas do jantar",          valor: 640.00, data: "2025-06-02" },
-    { id: 4, tipo: "despesa",  descricao: "Conta de gás",              valor: 95.00,  data: "2025-06-02" },
-    { id: 5, tipo: "receita",  descricao: "Vendas do almoço",          valor: 910.00, data: "2025-06-03" },
+    { id: 1, tipo: "receita",  descricao: "Vendas do almoço",      valor: 850.00, data: "2025-06-01" },
+    { id: 2, tipo: "despesa",  descricao: "Compra de ingredientes", valor: 320.00, data: "2025-06-01" },
+    { id: 3, tipo: "receita",  descricao: "Vendas do jantar",       valor: 640.00, data: "2025-06-02" },
+    { id: 4, tipo: "despesa",  descricao: "Conta de gás",           valor: 95.00,  data: "2025-06-02" },
+    { id: 5, tipo: "receita",  descricao: "Vendas do almoço",       valor: 910.00, data: "2025-06-03" },
 ];
 
 let proximoLancamentoId = lancamentos.length + 1;
@@ -206,6 +208,7 @@ function renderizarFinanceiro() {
         '</div>';
 
     const tabela = document.getElementById("tabela-lancamentos");
+
     if (lancamentos.length === 0) {
         tabela.innerHTML = "<p>Nenhum lançamento registrado.</p>";
         return;
@@ -256,7 +259,6 @@ document.getElementById("form-lancamento").addEventListener("submit", function (
 // SEÇÃO: HISTÓRICO DE VENDAS
 // ============================================================
 
-// Dados de vendas — substitua por chamada a API ou banco de dados
 let vendas = [
     { id: 1, prato: "Feijoada Completa", quantidade: 12, total: 598.80, data: "2025-06-01" },
     { id: 2, prato: "Frango ao Molho",   quantidade: 8,  total: 308.00, data: "2025-06-01" },
@@ -271,9 +273,9 @@ function atualizarFiltroPratos() {
     select.innerHTML = '<option value="todos">Todos</option>';
     pratos.forEach(function (p) {
         const opt = document.createElement("option");
-        opt.value = p.nome;
-        opt.textContent = p.nome;
-        if (p.nome === valorAtual) opt.selected = true;
+        opt.value = p.nomePrato;
+        opt.textContent = p.nomePrato;
+        if (p.nomePrato === valorAtual) opt.selected = true;
         select.appendChild(opt);
     });
 }
@@ -340,9 +342,9 @@ document.getElementById("btn-filtrar-vendas").addEventListener("click", function
 });
 
 // ============================================================
-// INICIALIZAÇÃO — renderiza todas as seções ao carregar
+// INICIALIZAÇÃO
 // ============================================================
 
-renderizarPratos();
+carregarPratos();      // busca pratos da API
 renderizarFinanceiro();
 renderizarHistorico();

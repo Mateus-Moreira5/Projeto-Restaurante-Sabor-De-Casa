@@ -21,7 +21,7 @@ ProjectAssetsFile=<PATH>obj/project.assets.json
 RootNamespace=API
 RunAnalyzers=
 RunAnalyzersDuringLiveAnalysis=
-SolutionPath=<PATH>../RestauranteSaborDeCasa.sln
+SolutionPath=*Undefined*
 TargetFrameworkIdentifier=.NETCoreApp
 TargetPath=<PATH>bin/Debug/net10.0/API.dll
 TargetRefPath=<PATH>obj/Debug/net10.0/ref/API.dll
@@ -55,33 +55,56 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
-Controller/PratoController.cs
+Controller/
+ CepController.cs
+ FormularioPedidoController.cs
+ PedidoController.cs
+ PratoController.cs
+ UsuarioController.cs
 data/
  AppDbContext.cs
  configuration/
   FormularioPedidoConfiguration.cs
   PedidoConfiguration.cs
   PratoConfiguration.cs
+  UsuarioConfiguration.cs
 DTOs/FormularioPedidoDTO/
- FormularioPedidoCreateDTO.cs
- FormularioPedidoResponseDTO.cs
+ FormularioPedidoCreateDto.cs
+ FormularioPedidoResponseDto.cs
 DTOs/PedidoDTO/
- PedidoCreateDTO.cs
- PedidoResponseDTO.cs
+ PedidoCompletoCreateDto.cs
+ PedidoItemDto.cs
+ PedidoResponseDto.cs
 DTOs/PratoDTOs/
- AtualizarPratoDTO.cs
- CriarPratoDTO.cs
- PratoResponseDTO.cs
+ AtualizarPratoDto.cs
+ CriarPratoDto.cs
+ PratoResponseDto.cs
+DTOs/UsuarioDTO/
+ UsuarioLoginDto.cs
+ UsuarioRegistroDto.cs
+ UsuarioResponseDto.cs
+DTOs/ViaCepResponseDto.cs
+Exceptions/AppException.cs
+Middlewares/ExceptionMiddleware.cs
 Migrations/
  20260427173154_Initial.cs
  20260427173154_Initial.Designer.cs
  20260430012847_imagem.cs
  20260430012847_imagem.Designer.cs
+ 20260505004308_mateus.cs
+ 20260505004308_mateus.Designer.cs
+ 20260505123146_conferindo.cs
+ 20260505123146_conferindo.Designer.cs
+ 20260505171848_Usuario.cs
+ 20260505171848_Usuario.Designer.cs
+ 20260505181532_corrigindo.cs
+ 20260505181532_corrigindo.Designer.cs
  AppDbContextModelSnapshot.cs
 Models/
  FormularioPedido.cs
  Pedido.cs
  Prato.cs
+ UsuarioAdm.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  API.AssemblyInfo.cs
@@ -93,16 +116,27 @@ Repository/
   IFormularioPedidoRepository.cs
   IPedidoRepository.cs
   IPratoRepository.cs
+  IUsuarioRepositort.cs
  PedidoRepository.cs
  PratoRepository.cs
-Services/Interfaces/
- IFormularioPedidoService.cs
- IPedidoService.cs
- IPratoService.cs
-Services/PratoService.cs
-Validators/PratoVallidators/
- AtualizarPratoValidator.cs
- CriarPratoValidator.cs
+ UsuarioRepository.cs
+Services/
+ FormularioPedidoService.cs
+ Interfaces/
+  IFormularioPedidoService.cs
+  IPedidoService.cs
+  IPratoService.cs
+  IUsuarioService.cs
+ PedidoService.cs
+ PratoService.cs
+ UsuarioService.cs
+ ViaCepService.cs
+Validators/
+ FormularioPedidoVallidators/FormularioPedidoValidator.cs
+ PedidoVallidator/PedidoVallidator.cs
+ PratoVallidators/
+  AtualizarPratoValidator.cs
+  CriarPratoValidator.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.AspNetCore.App.Ref/10.0.7/ref/net10.0/
@@ -415,17 +449,26 @@ Validators/PratoVallidators/
  System.Xml.XPath.XDocument.dll
  WindowsBase.dll
 <NUGET>/
+ bcrypt.net-next/4.1.0/lib/net10.0/BCrypt.Net-Next.dll
  fluentvalidation.aspnetcore/11.3.1/lib/net6.0/FluentValidation.AspNetCore.dll
  fluentvalidation.dependencyinjectionextensions/11.11.0/lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll
  fluentvalidation/11.11.0/lib/net8.0/FluentValidation.dll
+ microsoft.aspnetcore.authentication.jwtbearer/10.0.2/lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
  microsoft.aspnetcore.openapi/10.0.5/lib/net10.0/Microsoft.AspNetCore.OpenApi.dll
  microsoft.entityframeworkcore.abstractions/10.0.2/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
  microsoft.entityframeworkcore.relational/10.0.2/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
  microsoft.entityframeworkcore/10.0.2/lib/net10.0/Microsoft.EntityFrameworkCore.dll
+ microsoft.identitymodel.abstractions/8.0.1/lib/net9.0/Microsoft.IdentityModel.Abstractions.dll
+ microsoft.identitymodel.jsonwebtokens/8.0.1/lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+ microsoft.identitymodel.logging/8.0.1/lib/net9.0/Microsoft.IdentityModel.Logging.dll
+ microsoft.identitymodel.protocols.openidconnect/8.0.1/lib/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+ microsoft.identitymodel.protocols/8.0.1/lib/net9.0/Microsoft.IdentityModel.Protocols.dll
+ microsoft.identitymodel.tokens/8.0.1/lib/net9.0/Microsoft.IdentityModel.Tokens.dll
  microsoft.openapi/2.0.0/lib/net8.0/Microsoft.OpenApi.dll
  npgsql.entityframeworkcore.postgresql/10.0.0/lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
  npgsql/10.0.0/lib/net10.0/Npgsql.dll
  scalar.aspnetcore/2.14.3/lib/net10.0/Scalar.AspNetCore.dll
+ system.identitymodel.tokens.jwt/8.0.1/lib/net9.0/System.IdentityModel.Tokens.Jwt.dll
 
 [analyzerReferences]
 <DOTNET>/packs/Microsoft.AspNetCore.App.Ref/10.0.7/analyzers/dotnet/cs/

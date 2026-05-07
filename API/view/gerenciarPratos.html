@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pratos - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciar Pratos</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="institucional.html">Nossa História</a>
+            <a href="painel.html">Painel</a>
+            <button id="btn-sair">Sair</button>
+        </nav>
+    </header>
+ 
+    <main>
+ 
+        <!-- LISTA DE PRATOS -->
+        <section id="secao-lista" class="secao-painel ativa">
+            <h2>Pratos Cadastrados</h2>
+ 
+            <div class="painel-card">
+                <div id="feedback-msg" style="display:none;"></div>
+                <div id="lista-pratos-gerenciar">
+                    <p>Carregando pratos...</p>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- FORMULÁRIO DE EDIÇÃO (oculto até clicar em Editar) -->
+        <section id="secao-editar" class="secao-painel" style="display:none;">
+            <h2>Editar Prato</h2>
+ 
+            <div class="painel-card">
+                <form id="form-editar-prato">
+ 
+                    <!-- ID oculto para saber qual prato está sendo editado -->
+                    <input type="hidden" id="edit-id">
+ 
+                    <label for="edit-nomePrato">Nome do prato:</label>
+                    <input type="text" id="edit-nomePrato" placeholder="Ex: Frango Grelhado" required>
+ 
+                    <label for="edit-descricao">Descrição:</label>
+                    <input type="text" id="edit-descricao" placeholder="Ex: Prato leve e saboroso">
+ 
+                    <label for="edit-infoIngrediente">Ingredientes:</label>
+                    <input type="text" id="edit-infoIngrediente" placeholder="Ex: Frango, alho, azeite">
+ 
+                    <label for="edit-acompanhamento">Acompanhamento:</label>
+                    <input type="text" id="edit-acompanhamento" placeholder="Ex: Arroz e farofa">
+ 
+                    <label for="edit-urlImagem">URL da imagem:</label>
+                    <input type="url" id="edit-urlImagem" placeholder="https://exemplo.com/imagem.jpg">
+ 
+                    <!-- Preview da imagem atual -->
+                    <div id="preview-imagem" style="display:none;">
+                        <p>Preview:</p>
+                        <img id="img-preview" src="" alt="Preview do prato">
+                    </div>
+ 
+                    <label for="edit-preco">Preço (R$):</label>
+                    <input type="number" id="edit-preco" placeholder="0.00" step="0.01" min="0" required>
+ 
+                    <div class="form-acoes">
+                        <button type="submit">Salvar Alterações</button>
+                        <button type="button" id="btn-cancelar-edicao">Cancelar</button>
+                    </div>
+ 
+                </form>
+            </div>
+        </section>
+ 
+    </main>
+ 
+    <footer>
+        <p>&copy; 2025 Sabor de Casa. Todos os direitos reservados.</p>
+    </footer>
+ 
+    <script src="js/gerenciar-pratos.js"></script>
+</body>
+</html>
