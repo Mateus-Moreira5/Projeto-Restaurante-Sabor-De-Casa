@@ -1,92 +1,181 @@
 const telaLogin = document.getElementById('tela-login');
 const telaAdmin = document.getElementById('tela-admin');
-const btnSair = document.getElementById('btn-sair');
 const formLogin = document.getElementById('form-login');
+const erroLogin = document.getElementById('erro-login');
+const btnSair = document.getElementById('btn-sair');
 const listaPratos = document.getElementById('lista-pratos-admin');
+const listaPedidos = document.getElementById('lista-pedidos');
+const listaFormularios = document.getElementById('lista-formularios');
+const btnNovoPrato = document.getElementById('btn-novo-prato');
+const modalPrato = document.getElementById('modal-prato');
+const formPrato = document.getElementById('form-prato');
+const modalTitulo = document.getElementById('modal-titulo');
 
-function verificarLogin() {
-    const token = sessionStorage.getItem('token');
-    if (token) {
-        telaLogin.style.display = 'none';
-        telaAdmin.style.display = 'block';
-        btnSair.style.display = 'inline-block';
-        carregarPratosAdmin();
-    } else {
-        telaLogin.style.display = 'block';
-        telaAdmin.style.display = 'none';
-        btnSair.style.display = 'none';
-    }
+if (isAuthenticated()) {
+  mostrarPainel();
+} else {
+  telaLogin.style.display = 'block';
 }
 
 formLogin.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const usuario = document.getElementById('usuario').value;
-    const senha = document.getElementById('senha').value;
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+  try {
+    await login(email, senha);
+    mostrarPainel();
+  } catch (erro) {
+    erroLogin.style.display = 'block';
+    erroLogin.textContent = 'Erro: ' + erro.message;
+  }
+});
 
-    try {
-        const resp = await fetch('/api/admin/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usuario, senha })
-        });
-        if (resp.ok) {
-            const data = await resp.json();
-            sessionStorage.setItem('token', data.token);
-            verificarLogin();
-        } else {
-            alert('Usuário ou senha inválidos');
-        }
-    } catch {
-        if (usuario === 'admin' && senha === 'admin') {
-            sessionStorage.setItem('token', 'fake-jwt-token');
-            verificarLogin();
-        } else {
-            alert('Credenciais inválidas');
-        }
+btnSair.addEventListener('click', logout);
+
+btnNovoPrato.addEventListener('click', () => abrirModalPrato());
+
+document.querySelector('#modal-prato .fechar').addEventListener('click', () => modalPrato.style.display = 'none');
+
+formPrato.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('prato-id').value;
+  const dados = {
+    nomePrato: document.getElementById('nomePrato').value,
+    descricao: document.getElementById('descricao').value,
+    infoIngrediente: document.getElementById('infoIngrediente').value,
+    acompanhamento: document.getElementById('acompanhamento').value,
+    urlImagem: document.getElementById('urlImagem').value,
+    preco: parseFloat(document.getElementById('preco').value),
+    disponivel: document.getElementById('disponivel').checked
+  };
+
+  try {
+    if (id) {
+      const resp = await fetch(`${BASE_URL}/pratos/${id}`, {
+        method: 'PUT',
+        headers: headers(true),
+        body: JSON.stringify(dados)
+      });
+      await handleResponse(resp);
+    } else {
+      const resp = await fetch(`${BASE_URL}/pratos`, {
+        method: 'POST',
+        headers: headers(true),
+        body: JSON.stringify(dados)
+      });
+      await handleResponse(resp);
     }
+    modalPrato.style.display = 'none';
+    carregarPratosAdmin();
+  } catch (erro) {
+    alert('Erro: ' + erro.message);
+  }
 });
 
-btnSair.addEventListener('click', () => {
-    sessionStorage.removeItem('token');
-    verificarLogin();
-});
+async function mostrarPainel() {
+  telaLogin.style.display = 'none';
+  telaAdmin.style.display = 'block';
+  carregarPratosAdmin();
+  carregarPedidos();
+  carregarFormularios();
+}
 
 async function carregarPratosAdmin() {
-    try {
-        const resp = await fetch('/api/pratos');
-        const pratos = await resp.json();
-        listaPratos.innerHTML = pratos.map(prato => `
-            <div class="item-admin">
-                <span>${prato.nome} - ${prato.disponivel ? '✅ Disponível' : '❌ Esgotado'}</span>
-                <button onclick="alternarDisponibilidade(${prato.id})">
-                    ${prato.disponivel ? 'Marcar como Esgotado' : 'Marcar como Disponível'}
-                </button>
-            </div>
-        `).join('');
-    } catch (erro) {
-        listaPratos.innerHTML = '<p>Erro ao carregar pratos.</p>';
-    }
+  try {
+    const resp = await fetch(`${BASE_URL}/pratos`);
+    const pratos = await handleResponse(resp);
+    listaPratos.innerHTML = pratos.map(prato => `
+      <div class="item-admin">
+        <span>${prato.nomePrato} - ${prato.disponivel ? '✅' : '❌'}</span>
+        <button onclick="editarPrato('${prato.idPrato}')">Editar</button>
+        <button onclick="excluirPrato('${prato.idPrato}')">Excluir</button>
+      </div>
+    `).join('');
+  } catch (erro) {
+    listaPratos.innerHTML = '<p>Erro ao carregar pratos.</p>';
+  }
 }
 
-async function alternarDisponibilidade(id) {
-    const token = sessionStorage.getItem('token');
-    try {
-        const resp = await fetch(`/api/pratos/${id}/disponibilidade`, {
-            method: 'PUT',
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (resp.ok) {
-            carregarPratosAdmin();
-        } else if (resp.status === 401) {
-            alert('Sessão expirada. Faça login novamente.');
-            sessionStorage.removeItem('token');
-            verificarLogin();
-        } else {
-            alert('Erro ao atualizar disponibilidade.');
-        }
-    } catch {
-        alert('Erro de conexão.');
-    }
+async function carregarPedidos() {
+  try {
+    const resp = await fetch(`${BASE_URL}/api/pedidos`, { headers: headers(true) });
+    const pedidos = await handleResponse(resp);
+    listaPedidos.innerHTML = pedidos.map(p => `
+      <div class="item-admin">
+        <span>${p.nomePrato} - ${p.nomeCliente} (${p.quantidade})</span>
+        <button onclick="excluirPedido('${p.idPedido}')">Excluir</button>
+      </div>
+    `).join('');
+  } catch (erro) {
+    listaPedidos.innerHTML = '<p>Erro ao carregar pedidos.</p>';
+  }
 }
 
-verificarLogin();
+async function carregarFormularios() {
+  try {
+    const resp = await fetch(`${BASE_URL}/api/formularios`, { headers: headers(true) });
+    const formularios = await handleResponse(resp);
+    listaFormularios.innerHTML = formularios.map(f => `
+      <div class="item-admin">
+        <span>${f.nome} - ${f.tipoEntrega}</span>
+        <button onclick="excluirFormulario('${f.codigoPedido}')">Excluir</button>
+      </div>
+    `).join('');
+  } catch (erro) {
+    listaFormularios.innerHTML = '<p>Erro ao carregar formulários.</p>';
+  }
+}
+
+function abrirModalPrato(prato = null) {
+  modalTitulo.textContent = prato ? 'Editar Prato' : 'Novo Prato';
+  document.getElementById('prato-id').value = prato ? prato.idPrato : '';
+  document.getElementById('nomePrato').value = prato ? prato.nomePrato : '';
+  document.getElementById('descricao').value = prato ? prato.descricao || '' : '';
+  document.getElementById('infoIngrediente').value = prato ? prato.infoIngredientes : '';
+  document.getElementById('acompanhamento').value = prato ? prato.acompanhamentos : '';
+  document.getElementById('urlImagem').value = prato ? prato.urlImagem : '';
+  document.getElementById('preco').value = prato ? prato.preco : '';
+  document.getElementById('disponivel').checked = prato ? prato.disponivel : true;
+  modalPrato.style.display = 'block';
+}
+
+async function editarPrato(id) {
+  try {
+    const resp = await fetch(`${BASE_URL}/pratos/${id}`);
+    const prato = await handleResponse(resp);
+    abrirModalPrato(prato);
+  } catch (erro) {
+    alert('Erro ao carregar prato.');
+  }
+}
+
+async function excluirPrato(id) {
+  if (!confirm('Tem certeza?')) return;
+  try {
+    await fetch(`${BASE_URL}/pratos/${id}`, { method: 'DELETE', headers: headers(true) });
+    carregarPratosAdmin();
+  } catch (erro) {
+    alert('Erro ao excluir prato.');
+  }
+}
+
+async function excluirPedido(id) {
+  if (!confirm('Excluir este pedido?')) return;
+  try {
+    await fetch(`${BASE_URL}/api/pedidos/${id}`, { method: 'DELETE', headers: headers(true) });
+    carregarPedidos();
+  } catch (erro) {
+    alert('Erro ao excluir pedido.');
+  }
+}
+
+async function excluirFormulario(id) {
+  if (!confirm('Isso também excluirá todos os pedidos vinculados. Continuar?')) return;
+  try {
+    await fetch(`${BASE_URL}/api/formularios/${id}`, { method: 'DELETE', headers: headers(true) });
+    carregarFormularios();
+    carregarPedidos();
+  } catch (erro) {
+    alert('Erro ao excluir formulário.');
+  }
+}
