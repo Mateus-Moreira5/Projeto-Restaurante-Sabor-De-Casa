@@ -1,34 +1,44 @@
-async function inserirPrato(dadosPrato) {
-  const payload = {
-    nomePrato: dadosPrato.nomePrato,
-    descricao: dadosPrato.descricao,
-    infoIngrediente: dadosPrato.infoIngrediente,
-    acompanhamento: dadosPrato.acompanhamento,
-    urlImagem: dadosPrato.urlImagem,
-    preco: parseFloat(dadosPrato.preco).toFixed(2)
-  };
+const API_PRATOS = '/pratos';
 
-  const response = await fetch("http://localhost:5158/pratos", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
+document.getElementById('btn-inserir').addEventListener('click', async () => {
+  const nomePrato = document.getElementById('nomePrato').value.trim();
+  const descricao = document.getElementById('descricao').value.trim();
+  const infoIngrediente = document.getElementById('infoIngrediente').value.trim();
+  const acompanhamento = document.getElementById('acompanhamento').value.trim();
+  const urlImagem = document.getElementById('urlImagem').value.trim();
+  const preco = parseFloat(document.getElementById('preco').value);
 
-  if (!response.ok) {
-    throw new Error(`Erro ao inserir prato: ${response.status}`);
+  if (!nomePrato || isNaN(preco) || preco <= 0) {
+    alert('Preencha todos os campos obrigatórios (nome e preço válido).');
+    return;
   }
 
-  return await response.json();
-}
+  const payload = {
+    nomePrato,
+    descricao,
+    infoIngrediente,
+    acompanhamento,
+    urlImagem,
+    preco: preco.toFixed(2)
+  };
 
-// Exemplo de uso
-inserirPrato({
-  nomePrato: "Frango grelhado",
-  descricao: "Prato leve e saboroso",
-  infoIngrediente: "Sem glúten",
-  acompanhamento: "Arroz e salada",
-  urlImagem: "https://exemplo.com/frango.jpg",
-  preco: "35.90"
-})
-  .then(data => console.log("Prato inserido:", data))
-  .catch(err => console.error(err));
+  const token = sessionStorage.getItem('token');
+  try {
+    const resp = await fetch(API_PRATOS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token || ''}`
+      },
+      body: JSON.stringify(payload)
+    });
+    if (resp.ok) {
+      alert('Prato inserido com sucesso!');
+    } else {
+      const erro = await resp.text();
+      alert('Erro: ' + erro);
+    }
+  } catch (erro) {
+    alert('Erro de conexão.');
+  }
+});
