@@ -104,6 +104,7 @@ main {
     width: 100%;
     margin: 0 auto;
     padding: 30px 20px;
+     grid-template-columns: repeat(2, 1fr);
 }
 
 .hero {
@@ -785,4 +786,26 @@ details p {
     form {
         padding: 20px;
     }
+}
+.caixa {
+    background-color: #lightblue;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* sombra */
+  cursor: pointer;
+  transition: transform 0.2s; /* animação */      
+  }
+  .caixa:hover {
+  transform: scale(1.03); /* cresce ao passar o mouse */
+}
+
+@media (max-width: 600px) {
+  main {
+    grid-template-columns: 1fr; /* 1 coluna no mobile */
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
 }
