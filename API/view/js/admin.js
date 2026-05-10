@@ -29,7 +29,17 @@ formLogin.addEventListener('submit', async (e) => {
     erroLogin.textContent = 'Erro: ' + erro.message;
   }
 });
+function abrirPainel() {
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
 
+  const emailA = await fetch('http://localhost:5158/api/auth/login')
+  if (email === emailA && senha === emailA) {
+    window.location.href = 'painel.html';
+  } else {
+    document.getElementById('erro-login').style.display = 'block';
+  }
+}
 btnSair.addEventListener('click', logout);
 
 btnNovoPrato.addEventListener('click', () => abrirModalPrato());
