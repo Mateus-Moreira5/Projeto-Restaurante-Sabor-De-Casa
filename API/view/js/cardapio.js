@@ -13,7 +13,7 @@ async function carregarPratos() {
 function exibirPratos(pratos) {
   container.innerHTML = pratos.map(prato => `
     <div class="card-prato ${prato.disponivel ? '' : 'esgotado'}">
-      <img src="${prato.urlImagem || 'https://via.placeholder.com/300x200'}" alt="${prato.nomePrato}">
+      <img src="${prato.urlFoto || prato.urlImagem || 'https://via.placeholder.com/300x200'}" alt="${prato.nomePrato}">
       <div class="info">
         <h3>${prato.nomePrato}</h3>
         <p class="preco">R$ ${prato.preco.toFixed(2)}</p>
