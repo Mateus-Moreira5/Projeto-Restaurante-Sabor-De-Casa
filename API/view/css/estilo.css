@@ -151,7 +151,7 @@ main {
     padding: 30px 20px;
      grid-template-columns: repeat(2, 1fr);
 }
-
+/* img fundo "Faça seu evento conosco" */ 
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://55-bistro-restaurante.vercel.app/images/event-img.jpg');
     background-size: cover;
