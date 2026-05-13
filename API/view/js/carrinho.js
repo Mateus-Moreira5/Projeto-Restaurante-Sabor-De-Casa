@@ -4,11 +4,12 @@ let pratosCache = {};
 
 async function carregarCarrinho() {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
   if (carrinho.length === 0) {
-    container.innerHTML = '<p>Carrinho vazio.</p>';
-    totalDiv.innerHTML = '';
-    return;
-  }
+        container.innerHTML = `<div class="carrinho-vazio">Seu carrinho está vazio. <a href="cardapio.html">Ver cardápio</a></div>`;
+        totalDiv.innerHTML = '';
+        return;
+    }
 
   for (const item of carrinho) {
     if (!pratosCache[item.idPrato]) {
