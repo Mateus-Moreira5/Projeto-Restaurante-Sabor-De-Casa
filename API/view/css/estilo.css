@@ -932,7 +932,7 @@ details p {
     }
 }
 .caixa {
-    background-color: #lightblue;
+    background-color: lightblue;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* sombra */
