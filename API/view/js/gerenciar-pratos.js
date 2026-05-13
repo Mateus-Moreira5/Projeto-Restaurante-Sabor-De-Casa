@@ -40,6 +40,10 @@ function mostrarSecao(qual) {
 
 let pratos = [];
 
+function obterUrlImagem(prato) {
+    return prato?.urlFoto || prato?.urlImagem || "";
+}
+
 async function carregarPratos() {
     try {
         const resposta = await fetch(API_URL + "/pratos");
@@ -68,11 +72,12 @@ function renderizarPratos() {
     pratos.forEach(function (prato) {
         const item = document.createElement("div");
         item.className = "prato-admin-item";
+        const urlImagem = obterUrlImagem(prato);
 
         item.innerHTML =
             '<div class="prato-info">' +
-                (prato.urlImagem
-                    ? '<img class="prato-thumb" src="' + prato.urlImagem + '" alt="' + prato.nomePrato + '">'
+                (urlImagem
+                    ? '<img class="prato-thumb" src="' + urlImagem + '" alt="' + prato.nomePrato + '">'
                     : '') +
                 '<strong>' + prato.nomePrato + '</strong>' +
                 '<span class="prato-desc">'           + (prato.descricao       || "—") + '</span>' +
@@ -130,11 +135,11 @@ function abrirEdicao(id) {
     document.getElementById("edit-descricao").value      = prato.descricao      || "";
     document.getElementById("edit-infoIngrediente").value = prato.infoIngrediente || "";
     document.getElementById("edit-acompanhamento").value = prato.acompanhamento  || "";
-    document.getElementById("edit-urlImagem").value      = prato.urlImagem       || "";
+    document.getElementById("edit-urlImagem").value      = obterUrlImagem(prato);
     document.getElementById("edit-preco").value          = prato.preco           || "";
 
     // Exibe preview da imagem se existir
-    atualizarPreview(prato.urlImagem);
+    atualizarPreview(obterUrlImagem(prato));
 
     mostrarSecao("editar");
     window.scrollTo({ top: 0, behavior: "smooth" });

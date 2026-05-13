@@ -25,7 +25,7 @@ async function carregarCarrinho() {
     total += subtotal;
     return `
       <div class="item-carrinho">
-        <img src="${prato.urlImagem || 'https://via.placeholder.com/50'}" width="50">
+        <img src="${prato.urlFoto || prato.urlImagem || 'https://via.placeholder.com/50'}" width="50">
         <span>${prato.nomePrato}</span>
         <span>R$ ${prato.preco.toFixed(2)} x ${item.quantidade} = R$ ${subtotal.toFixed(2)}</span>
         <button onclick="alterarQuantidade('${item.idPrato}', ${item.quantidade - 1})">-</button>

@@ -137,13 +137,14 @@ async function carregarFormularios() {
 }
 
 function abrirModalPrato(prato = null) {
+  const urlPrato = prato ? (prato.urlFoto || prato.urlImagem || '') : '';
   modalTitulo.textContent = prato ? 'Editar Prato' : 'Novo Prato';
   document.getElementById('prato-id').value = prato ? prato.idPrato : '';
   document.getElementById('nomePrato').value = prato ? prato.nomePrato : '';
   document.getElementById('descricao').value = prato ? prato.descricao || '' : '';
   document.getElementById('infoIngrediente').value = prato ? prato.infoIngredientes : '';
   document.getElementById('acompanhamento').value = prato ? prato.acompanhamentos : '';
-  document.getElementById('urlImagem').value = prato ? prato.urlImagem : '';
+  document.getElementById('urlImagem').value = urlPrato;
   document.getElementById('preco').value = prato ? prato.preco : '';
   document.getElementById('disponivel').checked = prato ? prato.disponivel : true;
   modalPrato.style.display = 'block';
