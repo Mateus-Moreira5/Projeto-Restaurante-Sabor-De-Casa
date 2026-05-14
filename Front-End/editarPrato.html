@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Prato - Sabor de Casa</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Área do Chef</h1>
+        <nav>
+           <a href="cardapio.html">Adicionar Prato</a>
+            <a href="index.html">Editar Prato</a>
+            <a href="removerprato.html">Remover Prato</a>
+            <a href="carrinho.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Inserir Novo Prato</h2>
+
+        <form id="form-inserir-prato">
+            <label for="nomePrato">Nome do Prato</label>
+            <input type="text" id="nomePrato" name="nomePrato" placeholder="Ex: Frango grelhado" required>
+
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" placeholder="Descreva o prato..."></textarea>
+
+            <label for="infoIngrediente">Info dos Ingredientes</label>
+            <input type="text" id="infoIngrediente" name="infoIngrediente" placeholder="Ex: Sem glúten, vegano...">
+
+            <label for="acomp">Acompanhamento</label>
+            <input type="text" id="acomp" name="acompanhamento" placeholder="Ex: Arroz e salada">
+
+            <label for="urlImagem">URL da Imagem</label>
+            <input type="url" id="urlImagem" name="urlImagem" placeholder="https://...">
+
+            <label for="preco">Preço (R$)</label>
+            <input type="number" id="preco" name="preco" placeholder="0.00" min="0" step="0.01" required>
+
+            <button type="button" id="btn-inserir" onclick="editarPrato()">Inserir Prato</button>
+        </form>
+
+        <div id="mensagem"></div>
+    </main>
+    <script src="js/nav-mobile.js"></script>
+    <script src="js/addprato.js"></script>
+</body>
+</html>
