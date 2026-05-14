@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -58,17 +58,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-    app.Map("/", () => Results.Redirect("/scalar"));
-}
+app.MapOpenApi();
+app.MapScalarApiReference();
 
+app.Map("/", () => Results.Redirect("/scalar"));
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors("AllowAll");
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();   
 app.UseHttpsRedirection();
 app.MapControllers();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+
+app.Urls.Add($"http://0.0.0.0:{port}");
 app.Run();
