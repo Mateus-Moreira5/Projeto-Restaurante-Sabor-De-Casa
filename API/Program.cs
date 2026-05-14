@@ -66,7 +66,6 @@ app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddleware>();   
-app.UseHttpsRedirection();
 app.MapControllers();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
