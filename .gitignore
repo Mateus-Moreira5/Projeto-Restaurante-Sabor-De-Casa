@@ -5,7 +5,10 @@ publish/
 
 .idea/
 .vscode/
+.vs/
+
 *.sln.iml
+*.DotSettings.user
 
 *.user
 *.suo
@@ -25,10 +28,13 @@ coverage/
 packages/
 
 appsettings.Development.json
-appsettings.Local.
-appsettings.json
+appsettings.Local.json
+
 .env
 .env.*
 
 *.tmp
 *.cache
+
+node_modules/
+dist/
