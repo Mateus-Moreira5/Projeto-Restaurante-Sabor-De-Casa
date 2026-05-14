@@ -29,11 +29,11 @@ formLogin.addEventListener('submit', async (e) => {
     erroLogin.textContent = 'Erro: ' + erro.message;
   }
 });
-function abrirPainel() {
+async function abrirPainel() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
 
-  const emailA = await fetch('http://localhost:5158/api/auth/login')
+  const emailA = await fetch('http://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/admin/email')
   if (email === emailA && senha === emailA) {
     window.location.href = 'painel.html';
   } else {
