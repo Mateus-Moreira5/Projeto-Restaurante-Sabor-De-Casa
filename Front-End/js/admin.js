@@ -33,7 +33,7 @@ async function abrirPainel() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
 
-  const emailA = await fetch('http://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/admin/email')
+  const emailA = await fetch('https://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/admin/email')
   if (email === emailA && senha === emailA) {
     window.location.href = 'painel.html';
   } else {

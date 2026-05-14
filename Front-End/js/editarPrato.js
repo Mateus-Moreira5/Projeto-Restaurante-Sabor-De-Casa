@@ -3,7 +3,7 @@ async function apresentarPratos() {
   const lista = document.getElementById('mostrarPratos');
 
   try {
-    const resposta = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
+    const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
     if (!resposta.ok) {
       throw new Error(`A API retornou status ${resposta.status}`);
     }
@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', apresentarPratos);
     const botao = document.getElementById('btnDisponivel');
 
     try {
-        const resGet = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
+        const resGet = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
         const prato = await resGet.json();
 
-        const resPut = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/{id}`, {
+        const resPut = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
@@ -77,10 +77,10 @@ async function editarPrato() {
     const preco = document.getElementById('preco').value;
 
 try {
-    const resposta = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/{id}`,{
+    const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${id}`,{
         method: 'PATCH',
         headers: {
-            "Content-type" = "application/json",
+            "Content-type": "application/json",
             "Authorization": "Bearer EU_TOKSEN"
         },
         body: JSON.stringify({

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const senha = document.getElementById('senha').value;
 
     try {
-      const resposta = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/auth/login`, {
+      const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, senha: senha })
