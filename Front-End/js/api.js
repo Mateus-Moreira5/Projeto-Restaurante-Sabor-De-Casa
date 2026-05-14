@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5158';
+const BASE_URL = 'http://projeto-restaurante-sabor-de-casa-production.up.railway.app';
 
 function getToken() {
   return sessionStorage.getItem('token');
