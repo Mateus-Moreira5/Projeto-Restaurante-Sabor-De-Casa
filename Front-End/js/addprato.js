@@ -13,7 +13,7 @@ async function addPrato() {
   }
 
   try {
-    const resposta = await fetch('http://localhost:5158/pratos',{
+    const resposta = await fetch('http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos',{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

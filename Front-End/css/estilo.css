@@ -1177,3 +1177,10 @@ details p {
         text-align: center;
     }
 }
+#btnDisponivel {
+    background-color: rgb(128, 0, 0);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}

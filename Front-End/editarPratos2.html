@@ -10,14 +10,14 @@
     <header>
         <h1>Área do Chef</h1>
         <nav>
-            <a href="editarPrato.html">Editar Prato</a>
+           <a href="addprato.html">Adicionar Prato</a>
             <a href="removerprato.html">Remover Prato</a>
             <a href="carrinho.html">Dashboard</a>
         </nav>
     </header>
 
     <main>
-        <h2>Inserir Novo Prato</h2>
+        <h2>Editar Pratos</h2>
 
         <form id="form-inserir-prato">
             <label for="nomePrato">Nome do Prato</label>
@@ -38,12 +38,16 @@
             <label for="preco">Preço (R$)</label>
             <input type="number" id="preco" name="preco" placeholder="0.00" min="0" step="0.01" required>
 
-            <button type="button" id="btn-inserir" onclick="addPrato()">Inserir Prato</button>
+            <label>Disponibilidade</label>
+            <button type="button" id="btnDisponivel" onclick="alternarDisponibilidade()">Disponível</button>
+            <input type="hidden" id="disponivel" value="true">
+
+            <button type="button" id="btn-inserir" onclick="editarPrato()">Editar</button>
         </form>
 
         <div id="mensagem"></div>
     </main>
     <script src="js/nav-mobile.js"></script>
-    <script src="js/addprato.js"></script>
+    <script src="js/editarPrato.js"></script>
 </body>
 </html>
