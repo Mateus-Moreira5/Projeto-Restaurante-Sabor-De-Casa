@@ -1,9 +1,8 @@
-
 async function apresentarPratos() {
   const lista = document.getElementById('mostrarPratos');
 
   try {
-    const resposta = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
+    const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
     if (!resposta.ok) {
       throw new Error(`A API retornou status ${resposta.status}`);
     }
@@ -20,12 +19,12 @@ async function apresentarPratos() {
       const item = document.createElement('div');
       item.className = 'caixa';
       item.innerHTML = `
-        <div class="Prato-info">
-          <h2 class="prato-nome">${prato.nomePrato}</h2>
-          <button class="botao" type="button"
-                onclick="window.location.href='editarPrato.html2?id=${prato.idPrato}'">editar</button>
-        </div>
-      `;
+  <div class="Prato-info">
+    <h2 class="prato-nome">${prato.nomePrato}</h2>
+    <button class="botao" type="button"
+            onclick='window.location.href="editarPratos2.html?id=${prato.idPrato}"'>editar</button>
+  </div>
+`;
       lista.appendChild(item);
     });
 
@@ -41,10 +40,10 @@ document.addEventListener('DOMContentLoaded', apresentarPratos);
     const botao = document.getElementById('btnDisponivel');
 
     try {
-        const resGet = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
+        const resGet = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos`);
         const prato = await resGet.json();
 
-        const resPut = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/{id}`, {
+        const resPut = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
@@ -77,11 +76,10 @@ async function editarPrato() {
     const preco = document.getElementById('preco').value;
 
 try {
-    const resposta = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/{id}`,{
-        method: 'PATCH',
+    const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${id}`,{
+        method: 'PUT',
         headers: {
-            "Content-type" = "application/json",
-            "Authorization": "Bearer EU_TOKSEN"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             nomePrato : nome,
@@ -92,9 +90,15 @@ try {
             preco : preco
         })
     })
+     if (!resposta.ok) {
+      alert('Não foi possível retirar o prato.');
+      return;
+    }
+
+    alert('prato editado com sucesso')
     const data = await resposta.json();
         console.log(data);
 } catch (error) {
-    console.error("Erro na requisição:", erro);
+    console.error("Erro na requisição:", error);
 }
 }

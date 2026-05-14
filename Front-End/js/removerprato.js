@@ -2,7 +2,7 @@ async function apresentarPratos() {
   const lista = document.getElementById('mostrarPratos');
 
   try {
-    const resposta = await fetch('http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos');
+    const resposta = await fetch('https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos');
     if (!resposta.ok) {
       throw new Error(`A API retornou status ${resposta.status}`);
     }
@@ -39,7 +39,7 @@ async function deletarPrato(idPrato) {
   if (!confirmado) return;
 
   try {
-    const response = await fetch(`http://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/{id}`, {
+    const response = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${idPrato}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     });
