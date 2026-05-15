@@ -77,17 +77,11 @@ async function editarPrato() {
 
 try {
     const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/pratos/${id}`,{
-<<<<<<< HEAD
+
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
-=======
-        method: 'PATCH',
-        headers: {
-            "Content-type": "application/json",
-            "Authorization": "Bearer EU_TOKSEN"
->>>>>>> 9fef21f86aa2a2858bfdaf591f0d2b4559e8cd2d
-        },
+                },
         body: JSON.stringify({
             nomePrato : nome,
             descricao : descricao,
