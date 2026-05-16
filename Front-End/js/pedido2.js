@@ -1,4 +1,4 @@
-async function listaPedidos() {
+ async function listaPedidos() {
   const ped = document.getElementById('mostrarPedidos');
 
   if (!ped) {
@@ -31,7 +31,7 @@ async function listaPedidos() {
 
       item.innerHTML = `
         <div class="Prato-info">
-          <h2>${i.nome ?? ''}</h2>
+          <p>Nome:${i.nome}</p>
           <p>Telefone: ${i.telefone ?? ''}</p>
           <p>Forma de Pagamento: ${i.tipoPagamento ?? ''}</p>
           <p>Tipo Entrega: ${i.tipoEntrega ?? ''}</p>
