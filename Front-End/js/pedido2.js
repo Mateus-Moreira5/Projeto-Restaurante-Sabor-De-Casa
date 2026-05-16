@@ -1,5 +1,6 @@
 async function listaPedidos() {
   const ped = document.getElementById('mostrarPedidos');
+  ped.innerHTML = '';
 
 try {
   const resposta = await fetch('https://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/pedidos')
@@ -24,7 +25,9 @@ try {
           <p>Numero Da Casa:${i.numero}</p>
           <p>Bairro:${i.bairro}</p>
           <p>Complemento:${i.complemento}</p>
-          <p>${i.itens?.join(', ') ?? ''}</p> 
+          <p>${i.itens?.map(it => 
+  `${it.quantidade}x Prato ID:${it.fkIdPrato}${it.personalizacao ? ` (${it.personalizacao})` : ''}`
+).join(', ') ?? ''}</p>
           <button class="botao" type="button" 
             onclick="deletarPedido('${i.idPedido}')">concluido</button>
         </div>
