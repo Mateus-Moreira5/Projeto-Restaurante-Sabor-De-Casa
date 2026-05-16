@@ -39,13 +39,13 @@
           <p>Número da Casa: ${i.numero ?? ''}</p>
           <p>Bairro: ${i.bairro ?? ''}</p>
           <p>Complemento: ${i.complemento ?? ''}</p>
-          <p>
-            ${
-              i.itens?.map((it) =>
-                `${it.quantidade}x Prato ID: ${it.fkIdPrato}${it.personalizacao ? ` (${it.personalizacao})` : ''}`
-              ).join(', ') ?? ''
-            }
-          </p>
+          <p>${Array.isArray(i.itens) && i.itens.length > 0
+      ? i.itens.map((it) =>
+          `${it.quantidade ?? '?'}x Prato ID: ${it.fkIdPrato ?? '?'}${it.personalizacao ? ` (${it.personalizacao})` : ''}`
+        ).join(', ')
+      : `⚠️ Sem itens (valor: ${JSON.stringify(i.itens)})`
+  }
+</p>
           <button class="botao" type="button">Concluído</button>
         </div>
       `;
