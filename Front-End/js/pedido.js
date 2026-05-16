@@ -5,9 +5,25 @@ const radioDelivery = document.querySelector('input[value="delivery"]');
 const cepInput = document.getElementById('cep');
 const btnBuscarCep = document.getElementById('buscar-cep');
 const formPedido = document.getElementById('form-pedido');
+const numeroInput = document.getElementById('numero');
 
-radioRetirada.addEventListener('change', () => camposEndereco.style.display = 'none');
-radioDelivery.addEventListener('change', () => camposEndereco.style.display = 'block');
+function atualizarCamposEntrega() {
+  const isDelivery = radioDelivery.checked;
+
+  camposEndereco.style.display = isDelivery ? 'block' : 'none';
+  numeroInput.required = isDelivery;
+
+  if (!isDelivery) {
+    cepInput.value = '';
+    document.getElementById('logradouro').value = '';
+    numeroInput.value = '';
+    document.getElementById('bairro').value = '';
+    document.getElementById('complemento').value = '';
+  }
+}
+
+radioRetirada.addEventListener('change', atualizarCamposEntrega);
+radioDelivery.addEventListener('change', atualizarCamposEntrega);
 
 async function carregarResumo() {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
@@ -86,5 +102,6 @@ formPedido.addEventListener('submit', async (e) => {
   }
 });
 document.addEventListener('DOMContentLoaded', carregarResumo);
+document.addEventListener('DOMContentLoaded', atualizarCamposEntrega);
 
 
