@@ -10,7 +10,7 @@ public class ViaCepService (HttpClient httpClient)
         var response = await httpClient.GetAsync($"https://viacep.com.br/ws/{cepLimpo}/json/");
         if (!response.IsSuccessStatusCode) return null;
         var content = await response.Content.ReadFromJsonAsync<ViaCepResponseDto>();
-        if (content is null || content.Erro) return null;
+        if (content is null || content.Erro == true) return null;
         return content;
     }
 }

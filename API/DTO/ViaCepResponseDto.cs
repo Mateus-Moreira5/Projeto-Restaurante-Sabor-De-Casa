@@ -8,5 +8,5 @@ public record ViaCepResponseDto(
     [property: JsonPropertyName("bairro")] string Bairro,
     [property: JsonPropertyName("localidade")] string Cidade,
     [property: JsonPropertyName("uf")] string Estado,
-    [property: JsonPropertyName("erro")] bool Erro
+    [property: JsonPropertyName("erro")] bool? Erro
 );
