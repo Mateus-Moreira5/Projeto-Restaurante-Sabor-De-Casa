@@ -31,7 +31,7 @@
 
       item.innerHTML = `
         <div class="Prato-info">
-          <p>Nome:${i.nome}</p>
+          <h2>Nome:${i.nomeCliente}</h2>
           <p>Telefone: ${i.telefone ?? ''}</p>
           <p>Forma de Pagamento: ${i.tipoPagamento ?? ''}</p>
           <p>Tipo Entrega: ${i.tipoEntrega ?? ''}</p>
@@ -39,14 +39,10 @@
           <p>Número da Casa: ${i.numero ?? ''}</p>
           <p>Bairro: ${i.bairro ?? ''}</p>
           <p>Complemento: ${i.complemento ?? ''}</p>
-          <p>${Array.isArray(i.itens) && i.itens.length > 0
-      ? i.itens.map((it) =>
-          `${it.quantidade ?? '?'}x Prato ID: ${it.fkIdPrato ?? '?'}${it.personalizacao ? ` (${it.personalizacao})` : ''}`
-        ).join(', ')
-      : `⚠️ Sem itens (valor: ${JSON.stringify(i.itens)})`
-  }
-</p>
-          <button class="botao" type="button">Concluído</button>
+          <p>prato : ${i.nomePrato}</p>
+          <p>quantidade: ${i.quantidade}</p>
+          <p>personalização: ${i.personalizacao}</p>
+          <button class="botao" type="button" onclick="deletarPedido('${i.idPedido}')" >Concluído</button>
         </div>
       `;
       ped.appendChild(item);
@@ -61,14 +57,14 @@ async function deletarPedido(idPedido) {
 
   if (!confirmado) return;
 
-  try {
-    const resposta = await fetch(`'https://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/pedidos'/${idPedido}`, {
+   try {
+    const resposta = await fetch(`https://projeto-restaurante-sabor-de-casa-production.up.railway.app/api/pedidos/${idPedido}`, {
       method: 'DELETE'
     });
 
     if (!resposta.ok) {
       alert('Não foi possível concluir o pedido.');
-      return;
+      return
     }
 
     alert('Pedido concluído!');
