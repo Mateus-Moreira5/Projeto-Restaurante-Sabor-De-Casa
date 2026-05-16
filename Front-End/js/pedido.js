@@ -85,5 +85,6 @@ formPedido.addEventListener('submit', async (e) => {
     alert('Erro ao enviar pedido: ' + erro.message);
   }
 });
-
 document.addEventListener('DOMContentLoaded', carregarResumo);
+
+

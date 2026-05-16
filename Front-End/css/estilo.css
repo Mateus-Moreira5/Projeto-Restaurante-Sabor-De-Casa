@@ -936,17 +936,17 @@ details p {
     background-color: lightblue;
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* sombra */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
   cursor: pointer;
-  transition: transform 0.2s; /* animação */      
+  transition: transform 0.2s;      
   }
   .caixa:hover {
-  transform: scale(1.03); /* cresce ao passar o mouse */
+  transform: scale(1.03); 
 }
 
 @media (max-width: 600px) {
   main {
-    grid-template-columns: 1fr; /* 1 coluna no mobile */
+    grid-template-columns: 1fr;
     padding: 15px;
   }
 
@@ -998,7 +998,6 @@ details p {
     padding: 16px;
   }
 }
-/* ========== CARRINHO ========== */
 #itens-carrinho {
     display: flex;
     flex-direction: column;
