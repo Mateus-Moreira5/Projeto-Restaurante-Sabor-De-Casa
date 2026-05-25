@@ -51,7 +51,7 @@ btnBuscarCep.addEventListener('click', async () => {
     return;
   }
   try {
-    const resp = await fetch(`${BASE_URL}/api/cep/${cep}`);
+    const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     const endereco = await handleResponse(resp);
     document.getElementById('logradouro').value = endereco.logradouro || '';
     document.getElementById('bairro').value = endereco.bairro || '';
